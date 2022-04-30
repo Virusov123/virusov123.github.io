@@ -1,0 +1,118 @@
+body
+{
+	background-image: url("../img/fon1.jpg");
+}
+
+}
+.txt
+{
+	color: blue;
+	font-weight: bold;
+	font-size: 45px;
+	font-family: 'Didact Gothic', sans-serif;
+}
+h1
+{
+	color: blue;
+	font-weight: bold;
+	font-size: 75px;
+	font-family: 'Didact Gothic', sans-serif;
+}
+.stats
+{
+	width: 650px;
+	/*position: absolute;
+	left:700px;
+	top:0px;*/
+}
+.osn
+{
+	width: 80%;
+	height: 52%;  
+	margin: 10 auto;
+	padding: 10px;
+  	display:flex;
+	justify-content: center;
+}
+
+.polee
+{
+	width: 500px;
+	height: 500px;
+	background-color: #464646;
+	/*position: absolute;
+	left:5%;
+	top:5%;*/
+}
+.minimap
+{
+	width: 600px;
+	height: 600px;
+	background-color: #464646;
+	display: none;
+	/*position: absolute;
+	left:1200px;
+	top:0px;*/
+}
+p
+{
+	color: blue;
+	font-weight: bold;
+	font-size: 35px;
+	font-family: 'Didact Gothic', sans-serif;
+}
+.loading1
+{
+	position: absolute;
+	left:32%;
+	top:25%;
+	width: 35%;
+	height: 40%;
+	z-index: 2;
+	display: block;
+}
+.loadingfon
+{
+	position: absolute;
+	left:0px;
+	top:0px;
+	z-index: 1;
+	display: block;
+}
+.cords
+{
+	display: none;
+}
+.inf
+{
+	display:none;
+	font-size: 25px;
+}
+.bonus
+{
+	display:none;
+}
+.hp
+{
+	width: 200px;
+	height: 50px;
+	background-color: #afafaf;
+}
+.fd
+{
+	width: 200px;
+	height: 50px;
+	background-color: #afafaf;
+}
+.wt
+{
+	width: 200px;
+	height: 50px;
+	background-color: #afafaf;
+}
+.lt
+{
+	width: 200px;
+	height: 50px;
+	background-color: #afafaf;
+}

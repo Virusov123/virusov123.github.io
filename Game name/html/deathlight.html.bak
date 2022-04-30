@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>/*Game name*/</title>
+		<link rel="stylesheet" type="text/css" href="../css/game_death.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+	</head>
+	<body>
+	<h1 align = "center"> Вы памёрлі зза таго, што занадта доўга прабылі без святла</h1>
+	<div class  = 'osn' id = 'osn'>
+		<p align = "center"><a href = "../index.html"> На галоўную</a></p>
+		<p align = "center"><a href = "../game/game.html"> Гуляць зноў</a></p>
+	</div>
+	</body>
+</html>

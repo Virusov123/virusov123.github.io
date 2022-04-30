@@ -1,0 +1,26 @@
+body
+{
+	background-image: url("../img/fon1.jpg");
+}
+p
+{
+	color: blue;
+	font-weight: bold;
+	font-size: 45px;
+	font-family: 'Didact Gothic', sans-serif;
+}
+h1
+{
+	color: blue;
+	font-weight: bold;
+	font-size: 75px;
+	font-family: 'Didact Gothic', sans-serif;
+}
+div.osn
+{
+  width: 90%;
+  height: 42%;  
+  background-color: #464646;
+  margin: 10 auto;
+  padding: 10px;
+}

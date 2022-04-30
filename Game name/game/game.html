@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>/*Game name*/</title>
+		<link rel="stylesheet" type="text/css" href="../css/game_main.css">
+		<script src = "../js/game_main.js"> </script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+	</head>
+	<body onload = "start()" onkeydown = "handle(event)" onkeyup = "unh()">
+	<img class = "loading1" id = "load" src = "../img/loading.png">
+	<img class = "loadingfon" id = "loadf" src = "../img/loadingfon.png">
+	<div class = "osn">
+		<canvas id = "pole" class = "polee" width = "7000" height = "7000"> 
+		<p>Адсутнічае падтрымка canvas, калі ласка, зайдзіце праз іншы браузер</p></canvas>
+		<div class  = 'stats' id = 'sts'>
+			<p id = 'hp'><canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas> &nbps; </p>
+			<p id = 'fd'><canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas> &nbps; </p>
+			<p id = 'wat'><canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas> &nbps; </p>
+			<p id = 'lt'><canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas> &nbps; </p>
+			<p id = 'lv'> &nbps; </p>
+			<p id = 'bns' class = "bonus"> &nbps; </p>
+			<p id = 'inf' class = "inf"> &nbps; </p>
+			<p id = "coords" class = "cords">&nbsp; </p>
+		</div>
+		<canvas id = "poleprov" class = "minimap" width = "3100" height = "3100"> </canvas>
+		</div>
+	</body>
+</html>
