@@ -58,7 +58,7 @@ p
 {
 	color: blue;
 	font-weight: bold;
-	font-size: 35px;
+	font-size: 30px;
 	font-family: 'Didact Gothic', sans-serif;
 }
 .loading1
@@ -86,7 +86,7 @@ p
 .inf
 {
 	display:none;
-	font-size: 25px;
+	font-size: 20px;
 }
 .bonus
 {
@@ -95,24 +95,79 @@ p
 .hp
 {
 	width: 200px;
-	height: 50px;
+	height: 40px;
 	background-color: #afafaf;
 }
 .fd
 {
 	width: 200px;
-	height: 50px;
+	height: 40px;
 	background-color: #afafaf;
 }
 .wt
 {
 	width: 200px;
-	height: 50px;
+	height: 40px;
 	background-color: #afafaf;
 }
 .lt
 {
 	width: 200px;
-	height: 50px;
+	height: 40px;
 	background-color: #afafaf;
+}
+.info
+{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 50px;
+}
+.infodiv
+{
+	display: none;
+	position: absolute;
+	top: 10px;
+	left: 60px;
+	width: 85%;
+	height: 65%;
+	padding: 1px;
+	margin: 15 auto;
+	overflow: auto;
+	background: rgba(0, 0, 0, 0.7);
+	border: 5px solid #9f9f9f;
+}
+.help 
+{
+	font-size: 25px;
+}
+.help2 
+{
+	font-size: 15px;
+}
+.primkart
+{
+	width: 80px;
+	float: right;
+}
+.author
+{
+	position: absolute;
+	top: 10px;
+	left: 94%;
+	width: 5%;
+	
+}
+.auth
+{
+	display: none;
+	position: absolute;
+	top: 10px;
+	left: 80%;
+	width: 13%;
+	height: 65%;
+	padding: 1px;
+	margin: 15 auto;
+	background: rgba(0, 0, 0, 0.9);
+	border: 5px solid #9f9f9f;
 }

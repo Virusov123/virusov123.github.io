@@ -1,22 +1,21 @@
-var pole = []; var pole1 = []; var inv = []; var items = [];
+var pole = []; var pole1 = []; var inv = []; var items = []; var mobs = [];
 var opinv = 0; var opcont = 0;
 var contmax = 2; var contcord = 0;
 var x_inv = 0; var y_inv = 0;
 var maxwidth = 31; var maxheight = 31;
-var xblst; var yblst;
 var minsz = 7; var maxsz = 3;
 var lvl = 1; var lev = 0; var nazh = 0;
 var plposx; var plposy;
 var tryap = 0;
 var debugonn = 0;
 var perreg = 0;
+var kills = 0;
 var lightmax = 200; var light = lightmax;
 var hpmax = 100; var hp = hpmax;
 var fdmax = 800; var fd = fdmax;
 var watmax = 500; var wat = watmax;
 var bgbtlstmax = watmax*2; var bgbtlst = bgbtlstmax;
-var xvyh;
-var yvyh;
+var xvyh; var yvyh;
 //wall_floor
 	var stena = new Image();
 	stena.src = "../img/pol_steny/stena1.jpg";
@@ -59,6 +58,11 @@ var yvyh;
 	var bgbtl = new Image;
 	bgbtl.src = "../img/predm/big_bottle.png";
 //
+//mobs
+	var mob1l = new Image;
+	mob1l.src = "../img/mobs/mob1l.png";
+	var mob1r = new Image;
+	mob1r.src = "../img/mobs/mob1r.png";
 for (invst = 0; invst < 7; invst++)
 {
 	inv[invst] = [0, 0, 0, 0, 0, 0, 0];
@@ -80,6 +84,8 @@ function debug()//debug режим (миникарта и координаты)
 	debugonn = 1;
 	var canvas = document.getElementById("poleprov");
 	canvas.style.display = "block";
+	var crd = document.getElementById("coords");
+	crd.style.display = "block";
 	var ctx = canvas.getContext('2d');
 	ctx.clearRect(0, 0, 3100, 3100);
 	for (i = 0; i < maxwidth; i++)
@@ -120,12 +126,6 @@ function debug()//debug режим (миникарта и координаты)
 					break;
 				}
 			}
-		}
-	}
-	for (let i = 0; i < maxwidth; i++)
-	{
-		for (let j = 0; j < maxheight; j++)
-		{
 			switch(pole1[i][j])
 			{
 				case 1:
@@ -143,7 +143,15 @@ function debug()//debug режим (миникарта и координаты)
 					ctx.drawImage(lvn,i*100, j*100, 100, 100);
 					break;
 				}
-			}	
+			}
+			switch(mobs[i][j][0])
+			{
+				case 1:
+				{
+					ctx.drawImage(mob1l,i*100, j*100, 100, 100);
+					break;
+				}
+			}
 		}
 	}
 }
@@ -155,6 +163,7 @@ function next_level()//Переход на следующий уровень
 	pole = [];
 	pole1 = [];
 	items = [];
+	mobs = [];
 	start();
 }
 function genlest()//генерация лестниц
@@ -205,9 +214,10 @@ function gengr()//генерация заросшего окружения
 		}
 	}
 }
+var klvkvsh = 0;
 function genkuvsh()//генерация кувшинов
 {
-	let klvkvsh = 0;
+	klvkvsh = 0;
 	kuvshin = Math.round(kolkl / (100 * Math.sqrt(lvl)));
 	let mxkk = GRI(kuvshin) + Math.round(5/Math.sqrt(lvl));
 	klvrest = 0;
@@ -224,6 +234,31 @@ function genkuvsh()//генерация кувшинов
 		if (klvrest > 10000)
 		{
 			break;
+		}
+		klvrest++;
+	}
+}
+var klvmb = 0;
+function genmob()//генерация мобов
+{
+	klvmb = 0;
+	mob = Math.round((kolkl / 100) * Math.sqrt(lvl));
+	let mxkk = GRI(mob+1) + Math.round(Math.sqrt(lvl));
+	klvrest = 0;
+	while(klvmb < mxkk)
+	{
+		let grx = GRI(maxwidth-1);
+		let gry = GRI(maxheight-1);
+		if ((pole[grx][gry] == 0 || pole[grx][gry] == 2) && pole1[grx][gry] == 0 && mobs[grx][gry][0] == 0)
+		{
+			mobs[grx][gry][0] = 1;
+			mobs[grx][gry][2] = 20;
+			klvmb++;
+		}
+		if (klvrest > 10000)
+		{
+			break;
+			console.log("tt");
 		}
 		klvrest++;
 	}
@@ -275,6 +310,9 @@ function start()//стартовая функция
 		pole[startlaunch] = [];
 		pole1[startlaunch] = [];
 		items[startlaunch] = [];
+		mobs[startlaunch] = [];
+		for (startlaunch1 = 0; startlaunch1 < maxheight; startlaunch1++)
+			mobs[startlaunch][startlaunch1] = [0,0];
 	}
 	let minip = document.getElementById('poleprov');
 	minip.width = maxwidth*100;
@@ -327,7 +365,11 @@ function generate()//Основрая генерация
 	for (startlaunch = 0; startlaunch < maxwidth; startlaunch++)
 	{
 		for (stl = 0; stl < maxheight; stl++)
+		{
 			pole1[startlaunch][stl] = 0;
+			items[startlaunch][stl] = 0;
+			mobs[startlaunch][stl][0] = 0;
+		}
 	}
 	let klvrest;
 	while (kolkl < (Math.round(maxwidth * maxheight / 6)))
@@ -341,23 +383,15 @@ function generate()//Основрая генерация
 		else
 		{
 			break;
-			//genrand(xblst, yblst);
 		}
 		klvrest++;
 	}
-				/*if (kolkl < (Math.round(maxwidth * maxheight / 8)))
-					genrand(3, 3);
-				if (kolkl < (Math.round(maxwidth * maxheight / 8)))
-					genrand(maxwidth-4, maxheight-4);
-				if (kolkl < (Math.round(maxwidth * maxheight / 8)))
-					genrand(3, maxheight-4);
-				if (kolkl < (Math.round(maxwidth * maxheight / 8)))
-					genrand(maxwidth-4, 3);*/
 	//вызов генераторов доп вещей
 	gengr();
 	genkuvsh();
 	genluzh();
 	genlest();
+	genmob();
 	//вызов debug режима
 	if (debugonn)
 		debug();
@@ -406,61 +440,57 @@ function draw()//прорисовка хода
 							break;
 						}
 					}
-				}
-			}
-		for (let i = plposx-3; i < plposx+4; i++)
-		{
-			for (let j = plposy-3; j < plposy+4; j++)
-			{
-				switch (pole1[i][j])
-				{
-					case 1:
+					switch (pole1[i][j])
 					{
-						ctx.drawImage(kvsh,(i-plposx+3)*1000+300, (j-plposy+3)*1000+300, 500, 500);
-						break;
+						case 1:
+						{
+							ctx.drawImage(kvsh,(i-plposx+3)*1000+300, (j-plposy+3)*1000+300, 500, 500);
+							break;
+						}
+						case 2:
+						{
+							ctx.drawImage(lzh,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
+						case 4:
+						{
+							ctx.drawImage(lvn,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
 					}
-					case 2:
+					switch (items[i][j])
 					{
-						ctx.drawImage(lzh,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
-						break;
+						case 1:
+						{
+							ctx.drawImage(bread,(i-plposx+3)*1000+300, (j-plposy+3)*1000+300, 500, 500);
+							break;
+						}
+						case 2:
+						{
+							ctx.drawImage(torch,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
+						case 3:
+						{
+							ctx.drawImage(btl,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
+						case 4:
+						{
+							ctx.drawImage(trp,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
 					}
-					case 4:
+					switch(mobs[i][j][0])
 					{
-						ctx.drawImage(lvn,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
-						break;
-					}
-				}
-			}
-		}
-		for (let i = plposx-3; i < plposx+4; i++)
-		{
-			for (let j = plposy-3; j < plposy+4; j++)
-			{
-				switch (items[i][j])
-				{
-					case 1:
-					{
-						ctx.drawImage(bread,(i-plposx+3)*1000+300, (j-plposy+3)*1000+300, 500, 500);
-						break;
-					}
-					case 2:
-					{
-						ctx.drawImage(torch,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
-						break;
-					}
-					case 3:
-					{
-						ctx.drawImage(btl,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
-						break;
-					}
-					case 4:
-					{
-						ctx.drawImage(trp,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
-						break;
+						case 1:
+						{
+							ctx.drawImage(mob1l,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
 					}
 				}
 			}
-		}
 		if (light > 0)
 		{
 			ctx.fillStyle = "rgba(255, 221, 39, 0.33)";
@@ -559,409 +589,388 @@ function draw()//прорисовка хода
 		ctx.strokeRect(x_inv*1000, y_inv*1000, 1000, 1000);
 		invinf();
 	}
-	//контекстное меню
-	if (opcont)
-	{
-		//ctx.beginPath();
-		ctx.rect(1000, 1000, 5000, 1500);
-		ctx.fillStyle = '#afafaf';
-		ctx.fill();
-		ctx.strokeStyle = '#000000';
-		ctx.lineJoin = 'round';
-		ctx.lineWidth = 100;
-		ctx.fill();
-		switch(inv[x_inv][y_inv])
-		{
-			case 1:
-			{
-				ctx.rect(1500, 1500, 1500, 500);
-				ctx.rect(4000, 1500, 1500, 500);
-				ctx.fillStyle = '#afafaf';
-				ctx.fill();
-				ctx.strokeStyle = '#000000';
-				ctx.lineJoin = 'round';
-				ctx.lineWidth = 20;
-				ctx.fill();
-				ctx.fillStyle = '#000000';
-				ctx.fillStyle = '#000000';
-				ctx.font = "480px 'Didact Gothic'";
-				ctx.fillText("З'есці", 1600, 1900, 1350);
-				ctx.font = "450px 'Didact Gothic'";
-				ctx.fillText("Адмена", 4100, 1900, 1350);
-				ctx.stroke();
-				break;
-			}
-			case 2:
-			{
-				ctx.rect(1500, 1500, 1500, 500);
-				ctx.rect(4000, 1500, 1500, 500);
-				ctx.fillStyle = '#afafaf';
-				ctx.fill();
-				ctx.strokeStyle = '#000000';
-				ctx.lineJoin = 'round';
-				ctx.lineWidth = 20;
-				ctx.fill();
-				ctx.fillStyle = '#000000';
-				ctx.fillStyle = '#000000';
-				ctx.font = "440px 'Didact Gothic'";
-				ctx.fillText("Запаліць", 1520, 1900, 1350);
-				ctx.font = "450px 'Didact Gothic'";
-				ctx.fillText("Адмена", 4020, 1900, 1350);
-				ctx.stroke();
-				break;
-			}
-			case 3:
-			{
-				ctx.rect(1300, 1500, 1000, 500);
-				ctx.rect(2900, 1500, 1300, 500);
-				ctx.rect(4800, 1500, 1000, 500);
-				ctx.fillStyle = '#afafaf';
-				ctx.fill();
-				ctx.strokeStyle = '#000000';
-				ctx.lineJoin = 'round';
-				ctx.lineWidth = 20;
-				ctx.fill();
-				ctx.fillStyle = '#000000';
-				ctx.fillStyle = '#000000';
-				ctx.font = "360px 'Didact Gothic'";
-				ctx.fillText("Выпіць", 1320, 1900, 950);
-				ctx.fillText("Пераліць", 2920, 1900, 1250);
-				ctx.font = "350px 'Didact Gothic'";
-				ctx.fillText("Адмена", 4820, 1900, 950);
-				ctx.stroke();
-				break;
-			}
-			case 4:
-			{
-				ctx.rect(1500, 1500, 1500, 500);
-				ctx.rect(4000, 1500, 1500, 500);
-				ctx.fillStyle = '#afafaf';
-				ctx.fill();
-				ctx.strokeStyle = '#000000';
-				ctx.lineJoin = 'round';
-				ctx.lineWidth = 20;
-				ctx.fill();
-				ctx.fillStyle = '#000000';
-				ctx.fillStyle = '#000000';
-				ctx.font = "440px 'Didact Gothic'";
-				ctx.fillText("Смазаць", 1520, 1900, 1350);
-				ctx.font = "450px 'Didact Gothic'";
-				ctx.fillText("Адмена", 4020, 1900, 1350);
-				ctx.stroke();
-				break;
-			}
-			case 10:
-			{
-				ctx.rect(1300, 1500, 1000, 500);
-				ctx.rect(2900, 1500, 1300, 500);
-				ctx.rect(4800, 1500, 1000, 500);
-				ctx.fillStyle = '#afafaf';
-				ctx.fill();
-				ctx.strokeStyle = '#000000';
-				ctx.lineJoin = 'round';
-				ctx.lineWidth = 20;
-				ctx.fill();
-				ctx.fillStyle = '#000000';
-				ctx.fillStyle = '#000000';
-				ctx.font = "360px 'Didact Gothic'";
-				ctx.fillText("Выпіць", 1320, 1900, 950);
-				ctx.fillText("Напоўніць", 2920, 1900, 1250);
-				ctx.font = "350px 'Didact Gothic'";
-				ctx.fillText("Адмена", 4820, 1900, 950);
-				ctx.stroke();
-				break;
-			}
-		}
-		ctx.strokeStyle = '#FFFFFF';
-		if (contcord == 0)
-			ctx.strokeRect(1500, 1500, 1500, 500);
-		else
-			ctx.strokeRect(4000, 1500, 1500, 500);
-		ctx.lineJoin = 'round';
-		ctx.lineWidth = 20;
-	}
-	//Проработка кратчайшего расстояния
-	/*var pth = [];
-	while (pth.length == 0)
-	{
-		var start = [plposx, plposy];
-		var end = [xvyh, yvyh];
-		pth = findPath(pole,start,end);
-	}
-	document.getElementById("put").innerHTML = pth[0][0][0] + " " + pth[0][0][1];
-	*/
-	//Статы
-	if (tryap)
-	{
-		document.getElementById("bns").style.display = "block";
-		document.getElementById("bns").innerHTML = "Факел свеціць ярчэй.";
-	}
-	else
-	{
-		document.getElementById("bns").style.display = "none";
-	}
-	document.getElementById("coords").innerHTML = "x: " + plposx + "y: " + plposy;
-	document.getElementById("lv").innerHTML = "Паверх: -" + lvl;
-	if (hp > 0)
-	{
-		document.getElementById("hp").innerHTML = "<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas>HP :"+ hp + "/" + hpmax + ";";
-		hpload();
-	}
-	else
-	{
-		window.location.href = '../html/deathhp.html';
-	}
-	if (fd > 0)
-	{
-		document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа : " + Math.round(fd/fdmax*100) + "%;";
-		fdload();
-	}
-	else
-	{
-		document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа : 0%;";
-		fdload();
-	}
-	if (wat > 0)
-	{
-		document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада : " + Math.round(wat/watmax*100) + "%;";
-		wtload();
-	}
-	else
-	{
-		document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада : 0%;";
-		wtload();
-	}
-	if (light > 0)
-	{
-		document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>Святло : " + Math.round(light/lightmax*100) + "%;";
-		ltload();
-	}
-	else
-	{
-		if (light > -5)
-		{
-			document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>light : 0;";
-			ltload();
-		}
-		else
-		{
-			window.location.href = '../html/deathlight.html';
-		}
-	}
+	statout();
 }
-//Вверх
-function up()
-{
-	if (opcont)
-	{
-		return 0;	
-	}
-	if (opinv)
-	{
-		if (y_inv > 0)
-			y_inv--;
-		return 0;	
-	}
-	if (pole[plposx][plposy-1] != 1 && pole[plposx][plposy-1] != -2 && pole[plposx][plposy-1] != -5)
-	{
-		plposy--;
-		next_hod();
-	}
-	return 0;
-}
-//Вниз
-function down()
-{
-	if (opcont)
-	{
-		return 0;	
-	}
-	if (opinv)
-	{
-		if (y_inv < 6)
-			y_inv++;
-		return 0;	
-	}
-	if (pole[plposx][plposy+1] != 1 && pole[plposx][plposy+1] > -1)
-	{
-		plposy++;
-		next_hod();
-	}
-	return 0;
-}
-//Лево
-function left()
-{
-	if (opcont)
-	{
-		if (contcord > 0)
-			contcord--;
-		return 0;	
-	}
-	if (opinv)
-	{
-		if (x_inv > 0)
-			x_inv--;
-		return 0;
-	}
-	
-	if (pole[plposx-1][plposy] != 1 && pole[plposx-1][plposy] > -1)
-	{
-		plposx--;
-		next_hod();
-	}
-	lev = 1;
-	return 0;
-}
-//Право
-function right()
-{
-	if (opcont)
-	{
-		if (contcord < contmax)
-			contcord++;
-		return 0;	
-	}
-	if (opinv)
-	{
-		if (x_inv < 6)
-			x_inv++;
-		return 0;	
-	}
-	if (pole[plposx+1][plposy] != 1 && pole[plposx+1][plposy] > -1)
-	{
-		plposx++;
-		next_hod();
-	}
-	lev = 0;
-	return 0;
-}
-//Использование
-function use()
-{
-	/*if (opcont)
-	{
-		opcont = 0;
-		if (contcord == 0)
-			invchs();
-		else
-		{
-			if (contcord == contmax)
+//Вывод стат
+			function statout()
 			{
-				contcord = 0;
-				return 0;
-			}
-			else
-			{
-				if (inv[x_inv][y_inv] == 10)
+				//Статы
+				if (tryap)
 				{
-					bgbtlst = bgbtlstmax;
-					return 0;
+					document.getElementById("bns").style.display = "block";
+					document.getElementById("bns").innerHTML = "Факел свеціць ярчэй.";
 				}
 				else
 				{
-					inv[x_inv][y_inv] = 0;
-					bgbtlst += 80;
-					srtinv();
+					document.getElementById("bns").style.display = "none";
+				}
+				document.getElementById("coords").innerHTML = "x: " + plposx + "y: " + plposy;
+				document.getElementById("lv").innerHTML = "Паверх: -" + lvl;
+				document.getElementById("kl").innerHTML = "Забіта монстраў: " + kills;
+				if (hp > 0)
+				{
+					document.getElementById("hp").innerHTML = "<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas>HP :"+ hp + "/" + hpmax + ";";
+					hpload();
+				}
+				else
+				{
+					window.location.href = '../html/deathhp.html';
+				}
+				if (fd > 0)
+				{
+					document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа : " + Math.round(fd/fdmax*100) + "%;";
+					fdload();
+				}
+				else
+				{
+					document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа : 0%;";
+					fdload();
+				}
+				if (wat > 0)
+				{
+					document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада : " + Math.round(wat/watmax*100) + "%;";
+					wtload();
+				}
+				else
+				{
+					document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада : 0%;";
+					wtload();
+				}
+				if (light > 0)
+				{
+					document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>Святло : " + Math.round(light/lightmax*100) + "%;";
+					ltload();
+				}
+				else
+				{
+					if (light > -5)
+					{
+						document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>light : 0;";
+						ltload();
+					}
+					else
+					{
+						window.location.href = '../html/deathlight.html';
+					}
 				}
 			}
-		}
-		return 0;
-	}*/
-	if (opinv)
-	{
-		/*if (inv[x_inv][y_inv] == 0)
-			return 0;
-		if (inv[x_inv][y_inv] == 10 || inv[x_inv][y_inv] == 3)
-			contmax = 3;
-		else
-			contmax = 2;
-		opcont = 1;*/
-		invchs();
-		return 0;
-	}
-	if (pole1[plposx][plposy] == 4)
-	{
-		next_level();
-		light--;
-		next_hod();
-		return 0;
-	}
-	if (pole1[plposx][plposy] == 1)
-	{
-		vyp = GRI(4)+1;
-		/*if (vyp == 4)
-			vyp = GRI(4)+1;*/
-		items[plposx][plposy] = vyp;
-		pole1[plposx][plposy] = 0;
-		return 0;
-	}
-	if (pole1[plposx][plposy] == 2)
-	{
-		bgbtlst = bgbtlstmax;
-		return 0;
-	}
-	if (items[plposx][plposy] != 0)
-	{
-		geteltoinv(items[plposx][plposy]);
-		items[plposx][plposy] = 0;
-		return 0;
-	}
-	return 0;
-}
+//Управление
+						//Вверх
+						function up()
+						{
+							if (opcont)
+							{
+								return 0;	
+							}
+							if (opinv)
+							{
+								if (y_inv > 0)
+									y_inv--;
+								return 0;	
+							}
+							if (mobs[plposx][plposy-1][0] == 1)
+							{
+								mobs[plposx][plposy-1][2] -= 10;
+								if (mobs[plposx][plposy-1][2] <=0)
+								{
+									mobs[plposx][plposy-1][0] = 0;
+									kills++;
+								}
+								else
+								{
+									mobs[plposx][plposy][0] = 1;
+									mobs[plposx][plposy][1] = 1;
+									mobs[plposx][plposy][2] = mobs[plposx][plposy-1][2];
+									mobs[plposx][plposy-1][0] = 0;
+									mobs[plposx][plposy-1][2] = 0;
+								}
+							}
+							if (pole[plposx][plposy-1] != 1 && pole[plposx][plposy-1] != -2 && pole[plposx][plposy-1] != -5)
+							{
+								plposy--;
+								next_hod();
+							}
+							return 0;
+						}
+						//Вниз
+						function down()
+						{
+							if (opcont)
+							{
+								return 0;	
+							}
+							if (opinv)
+							{
+								if (y_inv < 6)
+									y_inv++;
+								return 0;	
+							}
+							if (mobs[plposx][plposy+1][0] == 1)
+							{
+								mobs[plposx][plposy+1][2] -= 10;
+								if (mobs[plposx][plposy+1][2] <=0)
+								{
+									mobs[plposx][plposy+1][0] = 0;
+									kills++;
+								}
+								else
+								{
+									mobs[plposx][plposy][0] = 1;
+									mobs[plposx][plposy][1] = 1;
+									mobs[plposx][plposy][2] = mobs[plposx][plposy+1][2];
+									mobs[plposx][plposy+1][0] = 0;
+									mobs[plposx][plposy+1][2] = 0;
+								}
+							}
+							if (pole[plposx][plposy+1] != 1 && pole[plposx][plposy+1] > -1)
+							{
+								plposy++;
+								next_hod();
+							}
+							return 0;
+						}
+						//Лево
+						function left()
+						{
+							if (opcont)
+							{
+								if (contcord > 0)
+									contcord--;
+								return 0;	
+							}
+							if (opinv)
+							{
+								if (x_inv > 0)
+									x_inv--;
+								return 0;
+							}
+							if (mobs[plposx-1][plposy][0] == 1)
+							{
+								mobs[plposx-1][plposy][2] -= 10;
+								if (mobs[plposx-1][plposy][2] <=0)
+								{
+									mobs[plposx-1][plposy][0] = 0;
+									kills++;
+								}
+								else
+								{
+									mobs[plposx][plposy][0] = 1;
+									mobs[plposx][plposy][1] = 1;
+									mobs[plposx][plposy][2] = mobs[plposx-1][plposy][2];
+									mobs[plposx-1][plposy][0] = 0;
+									mobs[plposx-1][plposy][2] = 0;
+								}
+							}
+							if (pole[plposx-1][plposy] != 1 && pole[plposx-1][plposy] > -1)
+							{
+								plposx--;
+								next_hod();
+							}
+							lev = 1;
+							return 0;
+						}
+						//Право
+						function right()
+						{
+							if (opcont)
+							{
+								if (contcord < contmax)
+									contcord++;
+								return 0;	
+							}
+							if (opinv)
+							{
+								if (x_inv < 6)
+									x_inv++;
+								return 0;	
+							}
+							if (mobs[plposx+1][plposy][0] == 1)
+							{
+								mobs[plposx+1][plposy][2] -= 10;
+								if (mobs[plposx+1][plposy][2] <=0)
+								{
+									mobs[plposx+1][plposy][0] = 0;
+									kills++;
+								}
+								else
+								{
+									mobs[plposx][plposy][0] = 1;
+									mobs[plposx][plposy][1] = 1;
+									mobs[plposx][plposy][2] = mobs[plposx+1][plposy][2];
+									mobs[plposx+1][plposy][0] = 0;
+									mobs[plposx+1][plposy][2] = 0;
+								}
+							}
+							if (pole[plposx+1][plposy] != 1 && pole[plposx+1][plposy] > -1)
+							{
+								plposx++;
+								next_hod();
+							}
+							lev = 0;
+							return 0;
+						}
+						//Использование
+						function use()
+						{
+							/*if (opcont)
+							{
+								opcont = 0;
+								if (contcord == 0)
+									invchs();
+								else
+								{
+									if (contcord == contmax)
+									{
+										contcord = 0;
+										return 0;
+									}
+									else
+									{
+										if (inv[x_inv][y_inv] == 10)
+										{
+											bgbtlst = bgbtlstmax;
+											return 0;
+										}
+										else
+										{
+											inv[x_inv][y_inv] = 0;
+											bgbtlst += 80;
+											srtinv();
+										}
+									}
+								}
+								return 0;
+							}*/
+							if (opinv)
+							{
+								/*if (inv[x_inv][y_inv] == 0)
+									return 0;
+								if (inv[x_inv][y_inv] == 10 || inv[x_inv][y_inv] == 3)
+									contmax = 3;
+								else
+									contmax = 2;
+								opcont = 1;*/
+								invchs();
+								return 0;
+							}
+							if (pole1[plposx][plposy] == 4)
+							{
+								next_level();
+								light--;
+								next_hod();
+								return 0;
+							}
+							if (pole1[plposx][plposy] == 1)
+							{
+								vyp = GRI(4)+1;
+								/*if (vyp == 4)
+									vyp = GRI(4)+1;*/
+								items[plposx][plposy] = vyp;
+								pole1[plposx][plposy] = 0;
+								return 0;
+							}
+							if (pole1[plposx][plposy] == 2)
+							{
+								bgbtlst = bgbtlstmax;
+								return 0;
+							}
+							if (items[plposx][plposy] != 0)
+							{
+								geteltoinv(items[plposx][plposy]);
+								items[plposx][plposy] = 0;
+								return 0;
+							}
+							return 0;
+						}
+//
 //открытие инвентаря
-function invent()
-{
-	if (opinv)
-	{
-		opinv = 0;
-		var cord = document.getElementById("inf");
-		cord.style.display = 'none';
-		return 0;
-	}
-	srtinv();
-	opinv = 1;
-	var cord = document.getElementById("inf");
-	cord.style.display = 'block';
-	return 0;
-}
-//Функция, что активируется каждый ход
-function next_hod()
-{
-	light--;
-	if (tryap > 0)
-	{
-		light--;
-	}
-	if (wat > 0)
-		wat--;
-	else
-	{
-		wat--;
-		hp-=8;
-	}
-	if (fd > 0)
-		fd--;
-	else
-	{
-		fd--;
-		hp-=5;
-	}
-	if (Math.round(fd/fdmax*100) > 70 && Math.round(wat/watmax*100) > 70 && hp < hpmax && perreg > 2)
-	{
-		hp++;
-		perreg = 0;
-		fd--;
-		wat--;
-	}
-	else
-		if ((Math.round(fd/fdmax*100) > 70 && Math.round(wat/watmax*100) > 70))
+		function invent()
 		{
-			perreg++;
-			fd--;
-			wat--;
+			if (opinv)
+			{
+				opinv = 0;
+				var cord = document.getElementById("inf");
+				cord.style.display = 'none';
+				return 0;
+			}
+			srtinv();
+			opinv = 1;
+			var cord = document.getElementById("inf");
+			cord.style.display = 'block';
+			return 0;
 		}
-}
+//Функция, что активируется каждый ход
+			function next_hod()
+			{
+				light--;
+				if (tryap > 0)
+				{
+					light--;
+				}
+				if (wat > 0)
+					wat--;
+				else
+				{
+					wat--;
+					hp-=8;
+				}
+				if (fd > 0)
+					fd--;
+				else
+				{
+					fd--;
+					hp-=5;
+				}
+				if (Math.round(fd/fdmax*100) > 70 && Math.round(wat/watmax*100) > 70 && hp < hpmax && perreg > 2)
+				{
+					hp++;
+					perreg = 0;
+					fd--;
+					wat--;
+				}
+				else
+					if ((Math.round(fd/fdmax*100) > 70 && Math.round(wat/watmax*100) > 70))
+					{
+						perreg++;
+						fd--;
+						wat--;
+					}
+				let inf = document.getElementById("inf");
+				inf.innerHTML = "";
+				for (let mbx = 0; mbx < maxwidth; mbx++)
+					for (let mby = 0; mby < maxwidth; mby++)
+					{
+						if (mobs[mbx][mby][0] == 1 && mobs[mbx][mby][1] == 0)
+						{
+							var pth = find_path(mbx, mby, plposx, plposy);
+							if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 3)
+							{
+								inf.style.display = "block";
+								inf.innerHTML += "Жывёла ХХХ. Сіла 10. HP: " + mobs[mbx][mby][2] + ";<br>";
+							}
+							if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 1.8)
+							{
+								hp-=10;
+							}
+							else
+							{
+								if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 10)
+								{
+									mobs[pth[1][0]][pth[1][1]][0] = 1;
+									mobs[pth[1][0]][pth[1][1]][2] = mobs[mbx][mby][2];
+									mobs[mbx][mby][0] = 0;
+									mobs[mbx][mby][2] = 0;
+									mobs[pth[1][0]][pth[1][1]][1] = 1;
+								}
+							}
+						}
+					}
+				for (let mbx = 0; mbx < maxwidth; mbx++)
+					for (let mby = 0; mby < maxwidth; mby++)
+						mobs[mbx][mby][1] = 0;
+				if (inf.innerHTML == "")
+					inf.style.display = "none";
+			}
 //Инвентарь добавление предмета
 function geteltoinv(item)
 {
@@ -980,145 +989,147 @@ function geteltoinv(item)
 	}
 }
 //Инвентарь сдвиг
-function srtinv()
-{
-	for (let j = 0; j < 7; j++)
-		for (let i = 0; i < 7; i++)
-		{
-			if (i == 5 && j == 6)
-				break;
-			if (inv[i][j] == 0)
+	function srtinv()
+	{
+		for (let j = 0; j < 7; j++)
+			for (let i = 0; i < 7; i++)
 			{
-				if (i < 6)
+				if (i == 5 && j == 6)
+					break;
+				if (inv[i][j] == 0)
 				{
-					inv[i][j] = inv[i+1][j];
-					inv[i+1][j] = 0;
+					if (i < 6)
+					{
+						inv[i][j] = inv[i+1][j];
+						inv[i+1][j] = 0;
+					}
+					else
+					{
+						inv[i][j] = inv[0][j+1];
+						inv[0][j+1] = 0;
+					}
 				}
-				else
-				{
-					inv[i][j] = inv[0][j+1];
-					inv[0][j+1] = 0;
-				}
+				
 			}
-			
-		}
-}
+	}
 //Инвентарь информация
-function invinf()
-{
-	switch(inv[x_inv][y_inv])
-	{
-		case 0://noting
+		function invinf()
 		{
-			document.getElementById("inf").innerHTML = "Гэта пустая клетка";
-			break;
+			switch(inv[x_inv][y_inv])
+			{
+				case 0://noting
+				{
+					document.getElementById("inf").innerHTML = "Гэта пустая клетка";
+					break;
+				}
+				case 1://bread
+				{
+					document.getElementById("inf").innerHTML = "Хлеб - асноўная ежа ў падзямеллі. Узнаўляе 75 адсоткаў ежы";
+					break;
+				}
+				case 2://torch
+				{
+					document.getElementById("inf").innerHTML = "Факел - асноўнае асвятленне для вас ў падзямеллі. Свеціць " + lightmax+ " хадоў";
+					break;
+				}
+				case 3://little_bottle
+				{
+					document.getElementById("inf").innerHTML = "Маленькая бутэлечка вады. Узнаўляе 70 адсоткаў вады";
+					break;
+				}
+				case 4://tryapka
+				{
+					document.getElementById("inf").innerHTML = "Ануча, смазаная магніем. Павялічвае радыус святла ад факела да поўнага затухання альбо запальвання новага. Факел згарае хутчэй.";
+					break;
+				}
+				case 10://big_bottle
+				{
+					document.getElementById("inf").innerHTML = "У вялікай бутэльцы можна захоўваць воду, набраную ў лужах і пасля яе піць. Зараз бутэлька запоўнена на " + Math.round(bgbtlst/bgbtlstmax*100) + " адсоткаў. Гэтага хопіць на " + Math.floor(bgbtlst/500) + " поўных узнаўленні вады.";
+					break;
+				}
+				default:
+				{
+					inv[x_inv][y_inv] = 0;
+					srtinv();
+					break;
+				}
+			}
 		}
-		case 1://bread
-		{
-			document.getElementById("inf").innerHTML = "Хлеб - асноўная ежа ў падзямеллі. Узнаўляе 75 адсоткаў ежы";
-			break;
-		}
-		case 2://torch
-		{
-			document.getElementById("inf").innerHTML = "Факел - асноўнае асвятленне для вас ў падзямеллі. Свеціць " + lightmax+ " хадоў";
-			break;
-		}
-		case 3://little_bottle
-		{
-			document.getElementById("inf").innerHTML = "Маленькая бутэлечка вады. Узнаўляе 70 адсоткаў вады";
-			break;
-		}
-		case 4://tryapka
-		{
-			document.getElementById("inf").innerHTML = "Ануча, смазаная магніем. Павялічвае радыус святла ад факела да поўнага затухання альбо запальвання новага. Факел згарае хутчэй.";
-			break;
-		}
-		case 10://big_bottle
-		{
-			document.getElementById("inf").innerHTML = "У вялікай бутэльцы можна захоўваць воду, набраную ў лужах і пасля яе піць. Зараз бутэлька запоўнена на " + Math.round(bgbtlst/bgbtlstmax*100) + " адсоткаў. Гэтага хопіць на " + Math.floor(bgbtlst/500) + " поўных узнаўленні вады.";
-			break;
-		}
-		default:
-		{
-			inv[x_inv][y_inv] = 0;
-			srtinv();
-			break;
-		}
-	}
-}
+//
 //Управление основа
-pole.onkeydown = pole.onkeyup = pole.onkeypress = handle;
-function handle(e)//ход
-{
-	if (!nazh)
-	{
-		nazh = 1;
-		switch(e.code)
-		{
-			case "KeyW":
+			pole.onkeydown = pole.onkeyup = pole.onkeypress = handle;
+			function handle(e)//ход
 			{
-				up();
-				break;
+				if (!nazh)
+				{
+					nazh = 1;
+					switch(e.code)
+					{
+						case "KeyW":
+						{
+							up();
+							break;
+						}
+						case "KeyS":
+						{
+							down();
+							break;
+						}
+						case "KeyA":
+						{
+							left();
+							break;
+						}
+						case "KeyD":
+						{
+							right();
+							break;
+						}
+						case "KeyE":
+						{
+							use();
+							break;
+						}
+						case "KeyI":
+						{
+							invent();
+							break;
+						}
+						case "ArrowUp":
+						{
+							up();
+							break;
+						}
+						case "ArrowDown":
+						{
+							down();
+							break;
+						}
+						case "ArrowLeft":
+						{
+							left();
+							break;
+						}
+						case "ArrowRight":
+						{
+							right();
+							break;
+						}
+						case "Enter":
+						{
+							use();
+							break;
+						}
+						case "ControlRight":
+						{
+							invent();
+							break;
+						}
+					}
+				}
+				draw();
 			}
-			case "KeyS":
-			{
-				down();
-				break;
-			}
-			case "KeyA":
-			{
-				left();
-				break;
-			}
-			case "KeyD":
-			{
-				right();
-				break;
-			}
-			case "KeyE":
-			{
-				use();
-				break;
-			}
-			case "KeyI":
-			{
-				invent();
-				break;
-			}
-			case "ArrowUp":
-			{
-				up();
-				break;
-			}
-			case "ArrowDown":
-			{
-				down();
-				break;
-			}
-			case "ArrowLeft":
-			{
-				left();
-				break;
-			}
-			case "ArrowRight":
-			{
-				right();
-				break;
-			}
-			case "Enter":
-			{
-				use();
-				break;
-			}
-			case "ControlRight":
-			{
-				invent();
-				break;
-			}
-		}
-	}
-	draw();
-}
+//
 function unh()
 {
 	nazh = 0;
@@ -1143,9 +1154,7 @@ function invchs()
 		}
 		case 2://torch
 		{
-			light=80;
-			if (light > lightmax)
-				light = lightmax;
+			light=lightmax;
 			inv[x_inv][y_inv] = 0;
 			tryap = 0;
 			break;
@@ -1183,105 +1192,208 @@ function invchs()
 	srtinv();
 	srtinv();
 }
-
-function hpload()
-{
-	var canvas = document.getElementById("hpbar");
-	var ctx = canvas.getContext('2d');
-	var grd=ctx.createLinearGradient(-100,250,900,250);
-	grd.addColorStop(0,"#ff0000");
-	grd.addColorStop(0.5,"#ffff00");
-	grd.addColorStop(1,"#00ff00");
-	ctx.beginPath();
-	ctx.fillStyle = grd;
-	ctx.rect(0, 0, hp*10, 500);
-	ctx.fill();
-}
-function fdload()
-{
-	var canvas = document.getElementById("fdbar");
-	var ctx = canvas.getContext('2d');
-	ctx.clearRect(0, 0, 1000, 500);
-	ctx.beginPath();
-	if (fd>0)
+//Статы
+	function hpload()
 	{
-		ctx.fillStyle = "#EC9D31";
-		ctx.rect(0, 0, Math.round(fd/fdmax*1000), 500);
+		var canvas = document.getElementById("hpbar");
+		var ctx = canvas.getContext('2d');
+		var grd=ctx.createLinearGradient(-100,250,900,250);
+		grd.addColorStop(0,"#ff0000");
+		grd.addColorStop(0.5,"#ffff00");
+		grd.addColorStop(1,"#00ff00");
+		ctx.beginPath();
+		ctx.fillStyle = grd;
+		ctx.rect(0, 0, hp*10, 500);
 		ctx.fill();
 	}
-}
-function wtload()
-{
-	var canvas = document.getElementById("wtbar");
-	var ctx = canvas.getContext('2d');
-	ctx.clearRect(0, 0, 1000, 500);
-	ctx.beginPath();
-	if (fd>0)
+	function fdload()
 	{
-		ctx.fillStyle = "#229EEA";
-		ctx.rect(0, 0, Math.round(wat/watmax*1000), 500);
-		ctx.fill();
-	}
-}
-function ltload()
-{
-	var canvas = document.getElementById("ltbar");
-	var ctx = canvas.getContext('2d');
-	ctx.clearRect(0, 0, 1000, 500);
-	ctx.beginPath();
-	if (!tryap)
-	{
-		if (light>0)
+		var canvas = document.getElementById("fdbar");
+		var ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, 1000, 500);
+		ctx.beginPath();
+		if (fd>0)
 		{
-			ctx.fillStyle = "#D1D61B";
-			ctx.rect(0, 0, Math.round(light/lightmax*800), 500);
+			ctx.fillStyle = "#EC9D31";
+			ctx.rect(0, 0, Math.round(fd/fdmax*1000), 500);
 			ctx.fill();
+		}
+	}
+	function wtload()
+	{
+		var canvas = document.getElementById("wtbar");
+		var ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, 1000, 500);
+		ctx.beginPath();
+		if (fd>0)
+		{
+			ctx.fillStyle = "#229EEA";
+			ctx.rect(0, 0, Math.round(wat/watmax*1000), 500);
+			ctx.fill();
+		}
+	}
+	function ltload()
+	{
+		var canvas = document.getElementById("ltbar");
+		var ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, 1000, 500);
+		ctx.beginPath();
+		if (!tryap)
+		{
+			if (light>0)
+			{
+				ctx.fillStyle = "#D1D61B";
+				ctx.rect(0, 0, Math.round(light/lightmax*800), 500);
+				ctx.fill();
+			}
+			else
+			{
+				ctx.fillStyle = "black";
+				ctx.rect(0, 0, -light*160, 500);
+				ctx.fill();
+			}
 		}
 		else
 		{
-			ctx.fillStyle = "black";
-			ctx.rect(0, 0, -light*160, 500);
-			ctx.fill();
+			if (light>0)
+			{
+				ctx.fillStyle = "#E3A800";
+				ctx.rect(0, 0, Math.round(light/lightmax*800), 500);
+				ctx.fill();
+			}
+			else
+			{
+				light = 0;
+				tryap = 0;
+			}
 		}
 	}
+//
+//Большая бутылка
+		function bigbottle(i, j)
+		{
+			var canvas = document.getElementById("pole");
+			var ctx = canvas.getContext('2d');
+			ctx.clearRect(i*1000, j*1000, 1000, 1000);
+			ctx.fillStyle = "#229EEA";
+			//(1000-Math.round(bgbtlst/bgbtlstmax*1000))
+			ctx.beginPath();
+			ctx.moveTo(i*1000+1000, j*1000+850);
+			ctx.lineTo(i*1000, j*1000+850);
+			ctx.lineTo(i*1000, j *1000 + 200 +(650-Math.round(bgbtlst/bgbtlstmax*650)));
+			ctx.lineTo(i*1000+1000, j *1000 + 200 + (650-Math.round(bgbtlst/bgbtlstmax*650)));
+			//ctx.rect(i*1000, j*1000+200 + (650-Math.round(bgbtlst/bgbtlstmax*650)), 1000, 1000-350);
+			ctx.fill();
+			ctx.drawImage(bgbtl,i*1000, j*1000, 1000, 1000);
+		}
+//Кратчайший путь
+			function Queue()
+			{
+				let collection = [];
+				this.put = function(element)
+				{
+					collection.push(element);
+				}
+				this.del = function()
+				{
+					return collection.shift();
+				}
+
+				this.get = function()
+				{
+					return collection[0];
+				}
+
+				this.empty = function()
+				{
+					return collection.length === 0;
+				}
+
+				this.size = function()
+				{
+					return collection.length;
+				}
+			}
+			function find_path(xst, yst, xfin, yfin)
+			{
+				var frontier = new Queue();
+				var tt = [];
+				tt[0] = xst; tt[1] = yst;
+				frontier.put(tt);
+				var came_from = [];
+				var map = [];
+				for (let i = 0; i < maxwidth; i++)
+				{
+					came_from[i] = [];
+					map[i] = [];
+					for (let j = 0; j < maxheight; j++)
+					{
+						if (pole[i][j] < 0 || pole[i][j] == 1)
+							map[i][j] = 0;
+						if (pole[i][j] == 2 || pole[i][j] == 0)
+							map[i][j] = 1;
+						came_from[i][j] = [];
+						came_from[i][j][0] = 0;
+						came_from[i][j][1] = 0;
+					}
+				}
+				while (!frontier.empty())
+				{
+					var current = frontier.get();
+					frontier.del();
+					if (map[current[0]+1][current[1]])
+					{
+						frontier.put([current[0]+1, current[1]]);
+						came_from[current[0]+1][current[1]] = [current[0], current[1]];
+						map[current[0]+1][current[1]] = 0;
+					}
+					if (map[current[0]-1][current[1]])
+					{
+						frontier.put([current[0]-1, current[1]]);
+						came_from[current[0]-1][current[1]] = [current[0], current[1]];
+						map[current[0]-1][current[1]] = 0;
+					}
+					if (map[current[0]][current[1]+1])
+					{
+						frontier.put([current[0], current[1]+1]);
+						came_from[current[0]][current[1]+1] = [current[0], current[1]];
+						map[current[0]][current[1]+1] = 0;
+					}
+					if (map[current[0]][current[1]-1])
+					{
+						frontier.put([current[0], current[1]-1]);
+						came_from[current[0]][current[1]-1] = [current[0], current[1]];
+						map[current[0]][current[1]-1] = 0;
+					}
+				}
+				var current2 = [xfin, yfin];
+				var path = [current2];
+				var current21 = [];
+				while (!(current2[0] == xst && current2[1] == yst))
+				{
+					current21 = came_from[current2[0]][current2[1]];
+					path.push(current21);
+					current2[0] = current21[0]; current2[1] = current21[1];
+				}
+				path.reverse();
+				return path;
+			}
+//
+//INFO
+function info()
+{
+	let io = document.getElementById("infodiv");
+	if (io.style.display == "block")
+		io.style.display = "none";
 	else
-	{
-		if (light>0)
-		{
-			ctx.fillStyle = "#E3A800";
-			ctx.rect(0, 0, Math.round(light/lightmax*800), 500);
-			ctx.fill();
-		}
-		else
-		{
-			ctx.fillStyle = "black";
-			ctx.rect(0, 0, -light*160, 500);
-			ctx.fill();
-		}
-	}
+		io.style.display = "block";
 }
-function bigbottle(i, j)
+//AUTHOR
+function author()
 {
-	var canvas = document.getElementById("pole");
-	var ctx = canvas.getContext('2d');
-	ctx.clearRect(i*1000, j*1000, 1000, 1000);
-	ctx.fillStyle = "#229EEA";
-	//(1000-Math.round(bgbtlst/bgbtlstmax*1000))
-	ctx.beginPath();
-	ctx.moveTo(i*1000+1000, j*1000+850);
-	ctx.lineTo(i*1000, j*1000+850);
-	ctx.lineTo(i*1000, j *1000 + 200 +(650-Math.round(bgbtlst/bgbtlstmax*650)));
-	ctx.lineTo(i*1000+1000, j *1000 + 200 + (650-Math.round(bgbtlst/bgbtlstmax*650)));
-	//ctx.rect(i*1000, j*1000+200 + (650-Math.round(bgbtlst/bgbtlstmax*650)), 1000, 1000-350);
-	ctx.fill();
-	ctx.drawImage(bgbtl,i*1000, j*1000, 1000, 1000);
+	let io = document.getElementById("auth");
+	if (io.style.display == "block")
+		io.style.display = "none";
+	else
+		io.style.display = "block";
 }
-/*
-
-
-
-
-
-
-
-*/
