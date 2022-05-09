@@ -393,7 +393,8 @@ function draw()//прорисовка хода
 {
 	var canvas = document.getElementById("pole");
 	var ctx = canvas.getContext('2d');
-	ctx.clearRect(0, 0, 7000, 7000);
+	ctx.fillStyle = '#474747';
+	ctx.fillRect(0, 0, 7000, 7000);
 	if (!opinv)//Основное поле
 	{
 		for (let i = plposx-3; i < plposx+4; i++)
@@ -616,7 +617,7 @@ function draw()//прорисовка хода
 					ctx.font = "300px 'Didact Gothic', sans-serif";
 					ctx.textAlign = "center";
 					ctx.fillText("З'есці", xncont+1250, yvcont+850);
-					ctx.fillText("Адмена", xncont+2850, yvcont+850);
+					ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
 					ctx.strokeStyle = "slategray";
 					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
 					ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
@@ -635,7 +636,7 @@ function draw()//прорисовка хода
 					ctx.font = "300px 'Didact Gothic', sans-serif";
 					ctx.textAlign = "center";
 					ctx.fillText("Запаліць", xncont+1250, yvcont+850);
-					ctx.fillText("Адмена", xncont+2850, yvcont+850);
+					ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
 					ctx.strokeStyle = "slategray";
 					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
 					ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
@@ -652,11 +653,11 @@ function draw()//прорисовка хода
 					ctx.fillRect(xncont+1200, yvcont+500, 1500, 500);
 					ctx.fillRect(xncont+2800, yvcont+500, 1000, 500);
 					ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-					ctx.font = "280px 'Didact Gothic', sans-serif";
+					ctx.font = "220px 'Didact Gothic', sans-serif";
 					ctx.textAlign = "center";
 					ctx.fillText("Выпіць", xncont+600, yvcont+850);
 					ctx.fillText("Пераліць", xncont+1950, yvcont+850);
-					ctx.fillText("Адмена", xncont+3300, yvcont+850);
+					ctx.fillText("Выкінуць", xncont+3300, yvcont+850);
 					ctx.strokeStyle = "slategray";
 					ctx.strokeRect(xncont+100, yvcont+500, 1000, 500);
 					ctx.strokeRect(xncont+1200, yvcont+500, 1500, 500);
@@ -680,7 +681,7 @@ function draw()//прорисовка хода
 					ctx.textAlign = "center";
 					ctx.fillText("Выкарыстаць", xncont+1250, yvcont+850);
 					ctx.font = "300px 'Didact Gothic', sans-serif";
-					ctx.fillText("Адмена", xncont+2850, yvcont+850);
+					ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
 					ctx.strokeStyle = "slategray";
 					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
 					ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
@@ -699,7 +700,7 @@ function draw()//прорисовка хода
 					ctx.font = "300px 'Didact Gothic', sans-serif";
 					ctx.textAlign = "center";
 					ctx.fillText("Выпіць", xncont+1250, yvcont+850);
-					ctx.fillText("Адмена", xncont+2850, yvcont+850);
+					ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
 					ctx.strokeStyle = "slategray";
 					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
 					ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
@@ -955,14 +956,14 @@ function draw()//прорисовка хода
 								if (!cont)
 								{
 									invchs();
-									cont = 0;
 								}
 								else
 									if (inv[x_inv][y_inv] != 3 || cont == 2)
 									{
-										opcontmenu = 0;
-										cont = 0;
-										return 0;
+										items[plposx][plposy] = inv[x_inv][y_inv];
+										inv[x_inv][y_inv] = 0;
+										srtinv();
+										srtinv();
 									}
 									else
 									{
@@ -972,8 +973,8 @@ function draw()//прорисовка хода
 										inv[x_inv][y_inv] = 0;
 										srtinv();
 										srtinv();
-										cont = 0;
 									}
+								cont = 0;
 								opcontmenu = 0;
 								return 0;
 							}
