@@ -1078,6 +1078,12 @@ function draw()//прорисовка хода
 								next_hod();
 								return 0;
 							}
+							if (pole1[plposx][plposy] == 3)
+							{
+								alert("error 1115 - can`t use item");
+								next_hod();
+								return 0;
+							}
 							if (items[plposx][plposy] != 0)
 							{
 								geteltoinv(items[plposx][plposy]);
