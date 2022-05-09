@@ -39,6 +39,8 @@ var bgbtlstmax = watmax*2; var bgbtlst = bgbtlstmax;
 	kvsh.src = "../img/pol_steny/kuvshin.png";
 	var lzh = new Image();
 	lzh.src = "../img/pol_steny/luzha.png";
+	var sunduk = new Image();
+	sunduk.src = "../img/pol_steny/sunduk.png";
 	var lvn = new Image();
 	lvn.src = "../img/pol_steny/lestvn.png";
 //
@@ -51,6 +53,8 @@ var bgbtlstmax = watmax*2; var bgbtlst = bgbtlstmax;
 	btl.src = "../img/predm/littlebottle.png";
 	var trp = new Image;
 	trp.src = "../img/predm/tryapka.png";
+	var iot = new Image;
+	iot.src = "../img/predm/iot.png";
 	var bgbtl = new Image;
 	bgbtl.src = "../img/predm/big_bottle.png";
 //
@@ -132,6 +136,11 @@ function debug()//debug режим (миникарта и координаты)
 				case 2:
 				{
 					ctx.drawImage(lzh,i*100, j*100, 100, 100);
+					break;
+				}
+				case 3:
+				{
+					ctx.drawImage(sunduk,i*100, j*100, 100, 100);
 					break;
 				}
 				case 4:
@@ -223,6 +232,26 @@ function genkuvsh()//генерация кувшинов
 		{
 			pole1[grx][gry] = 1;
 			klvkvsh++;
+		}
+		if (klvrest > 10000)
+		{
+			break;
+		}
+		klvrest++;
+	}
+}
+function gensndk()//генерация сундуков
+{
+	let sndk = GRI(5);
+	klvrest = 0;
+	while(!sndk)
+	{
+		let grx = GRI(maxwidth-1);
+		let gry = GRI(maxheight-1);
+		if ((pole[grx][gry] == 0 || pole[grx][gry] == 2) && (pole1[grx][gry] == 0))
+		{
+			pole1[grx][gry] = 3;
+			sndk++;
 		}
 		if (klvrest > 10000)
 		{
@@ -339,7 +368,7 @@ function start()//стартовая функция
 	ld.style.display = 'none';
 }
 
-function generate()//Основрая генерация
+function generate()//Основная генерация
 {
 	kolkl = 0;
 	for (launch_generate_x = 0; launch_generate_x < maxwidth; launch_generate_x++)
@@ -382,6 +411,7 @@ function generate()//Основрая генерация
 	//вызов генераторов доп вещей
 	gengr();
 	genkuvsh();
+	gensndk();
 	genluzh();
 	genlest();
 	genmob();
@@ -446,6 +476,11 @@ function draw()//прорисовка хода
 							ctx.drawImage(lzh,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
 							break;
 						}
+						case 3:
+						{
+							ctx.drawImage(sunduk,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
 						case 4:
 						{
 							ctx.drawImage(lvn,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
@@ -472,6 +507,11 @@ function draw()//прорисовка хода
 						case 4:
 						{
 							ctx.drawImage(trp,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
+						case 5:
+						{
+							ctx.drawImage(iot,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
 							break;
 						}
 					}
@@ -575,6 +615,12 @@ function draw()//прорисовка хода
 						ctx.drawImage(trp,i*1000+40, j*1000+40, 920, 920);
 						break;
 					}
+					case 5:
+					{
+						ctx.strokeRect(i*1000, j*1000, 1000, 1000);
+						ctx.drawImage(iot,i*1000+40, j*1000+40, 920, 920);
+						break;
+					}
 					case 10:
 					{
 						bigbottle(i, j);
@@ -673,6 +719,26 @@ function draw()//прорисовка хода
 					break;
 				}
 				case 4://tryapcont
+				{
+					ctx.fillRect(xncont+500, yvcont+500, 1500, 500);
+					ctx.fillRect(xncont+2100, yvcont+500, 1500, 500);
+					ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+					ctx.font = "220px 'Didact Gothic', sans-serif";
+					ctx.textAlign = "center";
+					ctx.fillText("Выкарыстаць", xncont+1250, yvcont+850);
+					ctx.font = "300px 'Didact Gothic', sans-serif";
+					ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
+					ctx.strokeStyle = "slategray";
+					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
+					ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
+					ctx.strokeStyle = "white";
+					if (!cont)
+						ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
+					else
+						ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
+					break;
+				}
+				case 5://iotcont
 				{
 					ctx.fillRect(xncont+500, yvcont+500, 1500, 500);
 					ctx.fillRect(xncont+2100, yvcont+500, 1500, 500);
@@ -808,6 +874,8 @@ function draw()//прорисовка хода
 									mobs[plposx][plposy][2] = mobs[plposx][plposy-1][2];
 									mobs[plposx][plposy-1][0] = 0;
 									mobs[plposx][plposy-1][2] = 0;
+									fd--;
+									wat--;
 								}
 							}
 							if (pole[plposx][plposy-1] != 1 && pole[plposx][plposy-1] != -2 && pole[plposx][plposy-1] != -5)
@@ -843,6 +911,8 @@ function draw()//прорисовка хода
 									mobs[plposx][plposy][2] = mobs[plposx][plposy+1][2];
 									mobs[plposx][plposy+1][0] = 0;
 									mobs[plposx][plposy+1][2] = 0;
+									fd--;
+									wat--;
 								}
 							}
 							if (pole[plposx][plposy+1] != 1 && pole[plposx][plposy+1] > -1)
@@ -890,6 +960,8 @@ function draw()//прорисовка хода
 									mobs[plposx][plposy][2] = mobs[plposx-1][plposy][2];
 									mobs[plposx-1][plposy][0] = 0;
 									mobs[plposx-1][plposy][2] = 0;
+									fd--;
+									wat--;
 								}
 							}
 							if (pole[plposx-1][plposy] != 1 && pole[plposx-1][plposy] > -1)
@@ -938,6 +1010,8 @@ function draw()//прорисовка хода
 									mobs[plposx][plposy][2] = mobs[plposx+1][plposy][2];
 									mobs[plposx+1][plposy][0] = 0;
 									mobs[plposx+1][plposy][2] = 0;
+									fd--;
+									wat--;
 								}
 							}
 							if (pole[plposx+1][plposy] != 1 && pole[plposx+1][plposy] > -1)
@@ -992,22 +1066,23 @@ function draw()//прорисовка хода
 							}
 							if (pole1[plposx][plposy] == 1)
 							{
-								vyp = GRI(4)+1;
-								/*if (vyp == 4)
-									vyp = GRI(4)+1;*/
+								vyp = GRI(5)+1;
 								items[plposx][plposy] = vyp;
 								pole1[plposx][plposy] = 0;
+								next_hod();
 								return 0;
 							}
 							if (pole1[plposx][plposy] == 2)
 							{
 								bgbtlst = bgbtlstmax;
+								next_hod();
 								return 0;
 							}
 							if (items[plposx][plposy] != 0)
 							{
 								geteltoinv(items[plposx][plposy]);
 								items[plposx][plposy] = 0;
+								next_hod();
 								return 0;
 							}
 							return 0;
@@ -1176,6 +1251,11 @@ function geteltoinv(item)
 					document.getElementById("inf").innerHTML = "Ануча, смазаная магніем. Павялічвае радыус святла ад факела да поўнага затухання альбо запальвання новага. Факел згарае хутчэй.";
 					break;
 				}
+				case 5://iot
+				{
+					document.getElementById("inf").innerHTML = "Ёт - асаблівы лек, які паскарае рэгенерацыю да астранамічных вышынь.";
+					break;
+				}
 				case 10://big_bottle
 				{
 					document.getElementById("inf").innerHTML = "У вялікай бутэльцы можна захоўваць воду, набраную ў лужах і пасля яе піць. Зараз бутэлька запоўнена на " + Math.round(bgbtlst/bgbtlstmax*100) + " адсоткаў. Гэтага хопіць на " + Math.floor(bgbtlst/500) + " поўных узнаўленні вады.";
@@ -1304,6 +1384,11 @@ function invchs()
 		{
 			tryap = 1;
 			inv[x_inv][y_inv] = 0;
+			break;
+		}
+		case 5: //iot
+		{
+			alert("error 1115 - can`t use item");
 			break;
 		}
 		case 10: //big_bootle

@@ -134,9 +134,8 @@ p
 	padding: 1px;
 	margin: 15 auto;
 	overflow: auto;
-	background: rgba(0, 0, 0, 0.7);
+	background: rgba(0, 0, 0, 0.9);
 	border: 5px solid #9f9f9f;
-	transition: .55s opacity, .55s visibility;
 }
 .help 
 {
@@ -151,12 +150,16 @@ p
 	width: 80px;
 	float: right;
 }
+.primkart2
+{
+	width: 40px;
+}
 .author
 {
 	position: absolute;
-	top: 10px;
+	top: 0px;
 	left: 94%;
-	width: 5%;
+	font-size: 23px;
 	
 }
 .auth
