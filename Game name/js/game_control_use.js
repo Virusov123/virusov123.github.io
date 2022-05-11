@@ -56,6 +56,14 @@ function use()
 		next_hod();
 		return 0;
 	}
+	if (pole1[plposx][plposy] == 3)
+	{
+		vyp = GRI(4)+4;
+		items[plposx][plposy] = vyp;
+		pole1[plposx][plposy] = 0;
+		next_hod();
+		return 0;
+	}
 	if (items[plposx][plposy] != 0)
 	{
 		geteltoinv(items[plposx][plposy]);

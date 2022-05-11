@@ -13,6 +13,31 @@ function  mobhod()
 					inf.style.display = "block";
 					inf.innerHTML += "Жывёла ХХХ. Сіла 10. HP: " + mobs[mbx][mby][2] + ";<br>";
 				}
+				if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 2.2)
+				{
+					if (krest)
+					{
+						if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx+1 - plposx)*(mbx+1 - plposx)+(mby - plposy)*(mby - plposy)) && hodvozm(mbx+1, mby))
+						{
+							mobhodd(mbx, mby, mbx+1, mby);
+						}
+						else
+							if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx-1 - plposx)*(mbx-1 - plposx)+(mby - plposy)*(mby - plposy)) && hodvozm(mbx-1, mby))
+							{
+								mobhodd(mbx, mby, mbx-1, mby);
+							}
+							else
+								if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby+1 - plposy)*(mby+1 - plposy)) && hodvozm(mbx, mby+1))
+								{
+									mobhodd(mbx, mby, mbx, mby+1);
+								}
+								else
+									if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby-1 - plposy)*(mby-1 - plposy)) && hodvozm(mbx, mby-1))
+									{
+										mobhodd(mbx, mby, mbx, mby-1);
+									}
+					}
+				}
 				if (mbrangedam(mbx, mby, plposx, plposy))
 				{
 					hp-=mbdam(mobs[mbx][mby][0]);
@@ -21,15 +46,45 @@ function  mobhod()
 				{
 					if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 10 && mobs[pth[1][0]][pth[1][1]][0] == 0)
 					{
-						mobs[pth[1][0]][pth[1][1]][0] = 1;
-						mobs[pth[1][0]][pth[1][1]][2] = mobs[mbx][mby][2];
-						mobs[mbx][mby][0] = 0;
-						mobs[mbx][mby][2] = 0;
-						mobs[pth[1][0]][pth[1][1]][1] = 1;
-						if (pth[1][0] - mbx > 0)
-							mobs[pth[1][0]][pth[1][1]][3] = 1;
+						mobhodd(mbx, mby, pth[1][0], pth[1][1]);
+					}
+					else
+					{
+						let v1 = GRI(2);
+						let v2 = GRI(2);
+						let v3 = GRI(2);
+						let v4 = GRI(2);
+						if (v1)
+						{
+							if (hodvozm(mbx+1, mby))
+							{
+								mobhodd(mbx, mby, mbx+1, mby);
+							}
+						}
 						else
-							mobs[pth[1][0]][pth[1][1]][3] = 0;
+							if (v1)
+							{
+								if (hodvozm(mbx-1, mby))
+								{
+									mobhodd(mbx, mby, mbx-1, mby);
+								}
+							}
+							else
+								if (v1)
+								{
+									if (hodvozm(mbx, mby+1))
+									{
+										mobhodd(mbx, mby, mbx, mby+1);
+									}
+								}
+								else
+									if (v1)
+									{
+										if (hodvozm(mbx, mby-1))
+										{
+											mobhodd(mbx, mby, mbx, mby-1);
+										}
+									}
 					}
 				}
 			}
@@ -67,4 +122,20 @@ function mbdam(mobb)
 			return 0;
 		}
 	}
+}
+function mobhodd(xs, ys, xf, yf)
+{
+	mobs[xf][yf][0] = mobs[xs][ys][0];
+	mobs[xf][yf][2] = mobs[xs][ys][2];
+	mobs[xs][ys][0] = 0;
+	mobs[xs][ys][2] = 0;
+	mobs[xf][yf][1] = 1;
+	if (xf - xs > 0)
+		mobs[xf][yf][3] = 1;
+	else
+		mobs[xf][yf][3] = 0;
+}
+function hodvozm(x, y)
+{
+	return (pole[x][y] >= 0 && pole[x][y] != 1 && mobs[x][y][0] == 0);
 }

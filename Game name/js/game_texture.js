@@ -41,6 +41,10 @@
 	trp.src = "../img/predm/tryapka.png";
 	var iot = new Image;
 	iot.src = "../img/predm/iot.png";
+	var krestik = new Image;
+	krestik.src = "../img/predm/krest.png";
+	var mch = new Image;
+	mch.src = "../img/predm/mech.png";
 	var bgbtl = new Image;
 	bgbtl.src = "../img/predm/big_bottle.png";
 //

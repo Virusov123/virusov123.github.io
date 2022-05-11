@@ -91,6 +91,16 @@ function drawmain()
 							ctx.drawImage(iot,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
 							break;
 						}
+						case 6:
+						{
+							ctx.drawImage(krestik,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
+						case 7:
+						{
+							ctx.drawImage(mch,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
 					}
 					switch(mobs[i][j][0])
 					{

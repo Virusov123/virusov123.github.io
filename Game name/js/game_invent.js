@@ -41,6 +41,28 @@ function invchs()
 			inv[x_inv][y_inv] = 0;
 			break;
 		}
+		case 6: //krest
+		{
+			if (!krest)
+				krest = 1;
+			else
+				krest = 0;
+			break;
+		}
+		case 7: //mech
+		{
+			if (!krest)
+			{
+				mech = 1;
+				dam = 20;
+			}
+			else
+			{
+				mech = 0;
+				dam = 10;
+			}
+			break;
+		}
 		case 10: //big_bootle
 		{
 			razn = watmax-wat;
@@ -92,6 +114,16 @@ function invinf()
 		case 5://iot
 		{
 			document.getElementById("inf").innerHTML = "Ёт - асаблівы лек, які паскарае рэгенерацыю да астранамічных вышынь. Працуе на працягу 10 хадоў";
+			break;
+		}
+		case 6://krest
+		{
+			document.getElementById("inf").innerHTML = "Крэст экспедыцыі, якую вам трэба знайсці. Адпужвае слабых мабоў";
+			break;
+		}
+		case 7://mech
+		{
+			document.getElementById("inf").innerHTML = "Меч павялічвае пашкоджанні мобам.";
 			break;
 		}
 		case 10://big_bottle

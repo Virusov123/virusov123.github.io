@@ -83,7 +83,7 @@ function up()
 	}
 	if (mobs[plposx][plposy-1][0] == 1)
 	{
-		mobs[plposx][plposy-1][2] -= 10;
+		mobs[plposx][plposy-1][2] -= dam;
 		if (mobs[plposx][plposy-1][2] <=0)
 		{
 			mobs[plposx][plposy-1][0] = 0;
@@ -120,7 +120,7 @@ function down()
 	}
 	if (mobs[plposx][plposy+1][0] == 1)
 	{
-		mobs[plposx][plposy+1][2] -= 10;
+		mobs[plposx][plposy+1][2] -= dam;
 		if (mobs[plposx][plposy+1][2] <=0)
 		{
 			mobs[plposx][plposy+1][0] = 0;
@@ -169,7 +169,7 @@ function left()
 	}
 	if (mobs[plposx-1][plposy][0] == 1)
 	{
-		mobs[plposx-1][plposy][2] -= 10;
+		mobs[plposx-1][plposy][2] -= dam;
 		if (mobs[plposx-1][plposy][2] <=0)
 		{
 			mobs[plposx-1][plposy][0] = 0;
@@ -219,7 +219,7 @@ function right()
 	}
 	if (mobs[plposx+1][plposy][0] == 1)
 	{
-		mobs[plposx+1][plposy][2] -= 10;
+		mobs[plposx+1][plposy][2] -= dam;
 		if (mobs[plposx+1][plposy][2] <=0)
 		{
 			mobs[plposx+1][plposy][0] = 0;

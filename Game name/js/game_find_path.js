@@ -49,45 +49,56 @@
 						came_from[i][j][1] = 0;
 					}
 				}
+				var npath = 1;
 				while (!frontier.empty())
 				{
 					var current = frontier.get();
+					if (current[0] == xfin && current[1] == yfin)
+						npath = 0;
 					frontier.del();
-					if (map[current[0]+1][current[1]])
+					if (map[current[0]+1][current[1]] && items[current[0]+1][current[1]] != 6)
 					{
 						frontier.put([current[0]+1, current[1]]);
 						came_from[current[0]+1][current[1]] = [current[0], current[1]];
 						map[current[0]+1][current[1]] = 0;
 					}
-					if (map[current[0]-1][current[1]])
+					if (map[current[0]-1][current[1]] && items[current[0]-1][current[1]] != 6)
 					{
 						frontier.put([current[0]-1, current[1]]);
 						came_from[current[0]-1][current[1]] = [current[0], current[1]];
 						map[current[0]-1][current[1]] = 0;
 					}
-					if (map[current[0]][current[1]+1])
+					if (map[current[0]][current[1]+1] && items[current[0]][current[1]+1] != 6)
 					{
 						frontier.put([current[0], current[1]+1]);
 						came_from[current[0]][current[1]+1] = [current[0], current[1]];
 						map[current[0]][current[1]+1] = 0;
 					}
-					if (map[current[0]][current[1]-1])
+					if (map[current[0]][current[1]-1] && items[current[0]+1][current[1]-1] != 6)
 					{
 						frontier.put([current[0], current[1]-1]);
 						came_from[current[0]][current[1]-1] = [current[0], current[1]];
 						map[current[0]][current[1]-1] = 0;
 					}
 				}
-				var current2 = [xfin, yfin];
-				var path = [current2];
-				var current21 = [];
-				while (!(current2[0] == xst && current2[1] == yst))
+				if (npath)
 				{
-					current21 = came_from[current2[0]][current2[1]];
-					path.push(current21);
-					current2[0] = current21[0]; current2[1] = current21[1];
+					current2 = [xst, yst];
+					path = [current2, current2];
 				}
-				path.reverse();
+				else
+				{
+					var current2 = [xfin, yfin];
+					var path = [current2];
+					var current21 = [];
+					while (!(current2[0] == xst && current2[1] == yst))
+					{
+						current21 = came_from[current2[0]][current2[1]];
+						path.push(current21);
+						current2[0] = current21[0]; current2[1] = current21[1];
+					}
+					path.reverse();
+				}
 				return path;
 			}
 //
