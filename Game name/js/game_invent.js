@@ -43,15 +43,19 @@ function invchs()
 		}
 		case 6: //krest
 		{
-			if (!krest)
-				krest = 1;
-			else
-				krest = 0;
+			if (hola)
+			{
+				if (!krest)
+					krest = 20;
+				else
+					krest = 0;
+				hola = 0;
+			}
 			break;
 		}
 		case 7: //mech
 		{
-			if (!krest)
+			if (!mech)
 			{
 				mech = 1;
 				dam = 20;
@@ -118,7 +122,7 @@ function invinf()
 		}
 		case 6://krest
 		{
-			document.getElementById("inf").innerHTML = "Крэст экспедыцыі, якую вам трэба знайсці. Адпужвае слабых мабоў";
+			document.getElementById("inf").innerHTML = "Крэст экспедыцыі, якую вам трэба знайсці. Адпужвае слабых мабоў, калі ўзяць у рукі асвятлённым, але з-за злой аўры гэтага месца асвятлення хапае толькі на 20 хадоў. Каб асвяціць, варта выліць ваду з малой бутэлькі на крэст.";
 			break;
 		}
 		case 7://mech

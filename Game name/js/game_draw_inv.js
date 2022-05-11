@@ -53,6 +53,8 @@ function drawinv()
 				{
 					xkr = i; ykr = j;
 					ctx.strokeRect(i*1000, j*1000, 1000, 1000);
+					if (hola)
+						ctx.drawImage(hol,i*1000+40, j*1000+40, 920, 920);
 					ctx.drawImage(krestik,i*1000+40, j*1000+40, 920, 920);
 					break;
 				}
@@ -149,7 +151,7 @@ function drawinv()
 			{
 				ctx.fillRect(xncont+100, yvcont+500, 1000, 500);
 				ctx.fillRect(xncont+1200, yvcont+500, 1500, 500);
-					ctx.fillRect(xncont+2800, yvcont+500, 1000, 500);
+				ctx.fillRect(xncont+2800, yvcont+500, 1000, 500);
 				ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
 				ctx.font = "220px 'Didact Gothic', sans-serif";
 				ctx.textAlign = "center";
@@ -212,21 +214,27 @@ function drawinv()
 			}
 			case 6://krestcont
 			{
-				ctx.fillRect(xncont+500, yvcont+500, 1500, 500);
-				ctx.fillRect(xncont+2100, yvcont+500, 1500, 500);
+				ctx.fillRect(xncont+100, yvcont+500, 1500, 500);
+				ctx.fillRect(xncont+1700, yvcont+500, 1000, 500);
+				ctx.fillRect(xncont+2800, yvcont+500, 1000, 500);
 				ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-				ctx.font = "300px 'Didact Gothic', sans-serif";
+				ctx.font = "220px 'Didact Gothic', sans-serif";
 				ctx.textAlign = "center";
-				ctx.fillText("Ўзяць у рукі", xncont+1250, yvcont+850);
-				ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
+				ctx.fillText("Узяць у рукі", xncont+850, yvcont+850);
+				ctx.fillText("Асвяціць", xncont+2200, yvcont+850);
+				ctx.fillText("Выкінуць", xncont+3300, yvcont+850);
 				ctx.strokeStyle = "slategray";
-				ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
-				ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
+				ctx.strokeRect(xncont+100, yvcont+500, 1500, 500);
+				ctx.strokeRect(xncont+1700, yvcont+500, 1000, 500);
+				ctx.strokeRect(xncont+2800, yvcont+500, 1000, 500);
 				ctx.strokeStyle = "white";
-				if (!cont)
-					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
+				if (cont == 0)
+					ctx.strokeRect(xncont+100, yvcont+500, 1500, 500);
 				else
-					ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
+					if (cont == 1)
+						ctx.strokeRect(xncont+1700, yvcont+500, 1000, 500);
+					else
+						ctx.strokeRect(xncont+2800, yvcont+500, 1000, 500);
 				break;
 			}
 			case 7://mechcont
@@ -234,9 +242,10 @@ function drawinv()
 				ctx.fillRect(xncont+500, yvcont+500, 1500, 500);
 				ctx.fillRect(xncont+2100, yvcont+500, 1500, 500);
 				ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-				ctx.font = "300px 'Didact Gothic', sans-serif";
+				ctx.font = "220px 'Didact Gothic', sans-serif";
 				ctx.textAlign = "center";
 				ctx.fillText("Экіпіраваць", xncont+1250, yvcont+850);
+				ctx.font = "300px 'Didact Gothic', sans-serif";
 				ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
 				ctx.strokeStyle = "slategray";
 				ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);

@@ -1,6 +1,8 @@
 function next_hod()
 {
 	light--;
+	if (krest)
+		krest--;
 	if (superreg > 0)
 	{
 		superreg--;

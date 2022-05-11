@@ -47,6 +47,8 @@
 	mch.src = "../img/predm/mech.png";
 	var bgbtl = new Image;
 	bgbtl.src = "../img/predm/big_bottle.png";
+	var hol = new Image;
+	hol.src = "../img/hola.png";
 //
 //mobs
 	var mob1l = new Image;

@@ -7,9 +7,10 @@ function use()
 			invchs();
 		}
 		else
+		{
 			if (inv[x_inv][y_inv] != 10)
 			{
-				if (inv[x_inv][y_inv] != 3 || cont == 2)
+				if ((inv[x_inv][y_inv] != 3 && inv[x_inv][y_inv] != 6) || cont == 2)
 				{
 					items[plposx][plposy] = inv[x_inv][y_inv];
 					inv[x_inv][y_inv] = 0;
@@ -18,14 +19,34 @@ function use()
 				}
 				else
 				{
-					bgbtlst += 350;
-					if (bgbtlst > bgbtlstmax)
-						bgbtlst = bgbtlstmax;
-					inv[x_inv][y_inv] = 0;
-					srtinv();
-					srtinv();
+					if (inv[x_inv][y_inv] == 3)
+					{
+						bgbtlst += 350;
+						if (bgbtlst > bgbtlstmax)
+							bgbtlst = bgbtlstmax;
+						inv[x_inv][y_inv] = 0;
+						srtinv();
+						srtinv();
+					}
+					else
+					{
+						let boti = 0;
+						for (let i = 0; i < 7; i++)
+							for (let j = 0; j < 6; j++)
+								if (inv[i][j] == 3)
+								{
+									boti = 1;
+									inv[i][j] = 0;
+									break;
+								}
+						if (boti)
+						{
+							hola = 1;
+						}
+					}
 				}
 			}
+		}
 		cont = 0;
 		opcontmenu = 0;
 		return 0;

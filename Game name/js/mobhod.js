@@ -11,11 +11,11 @@ function  mobhod()
 				if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 3)
 				{
 					inf.style.display = "block";
-					inf.innerHTML += "Жывёла ХХХ. Сіла 10. HP: " + mobs[mbx][mby][2] + ";<br>";
+					inf.innerHTML += "Слабая пачвара. Сіла 7. HP: " + mobs[mbx][mby][2] + ";<br>";
 				}
 				if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 2.2)
 				{
-					if (krest)
+					if (krest > 0)
 					{
 						if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx+1 - plposx)*(mbx+1 - plposx)+(mby - plposy)*(mby - plposy)) && hodvozm(mbx+1, mby))
 						{
@@ -38,7 +38,7 @@ function  mobhod()
 									}
 					}
 				}
-				if (mbrangedam(mbx, mby, plposx, plposy))
+				if (mbrangedam(mbx, mby, plposx, plposy) && !krest)
 				{
 					hp-=mbdam(mobs[mbx][mby][0]);
 				}
@@ -115,7 +115,7 @@ function mbdam(mobb)
 	{
 		case 1:
 		{
-			return 10;
+			return 7;
 		}
 		default:
 		{

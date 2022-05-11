@@ -149,7 +149,7 @@ function left()
 {
 	if (opcontmenu)
 	{
-		if (inv[x_inv][y_inv] != 3)
+		if (inv[x_inv][y_inv] != 3 && inv[x_inv][y_inv] != 6)
 			if (cont == 1)
 				cont = 0;
 			else
@@ -199,7 +199,7 @@ function right()
 {
 	if (opcontmenu)
 	{
-		if (inv[x_inv][y_inv] != 3)
+		if (inv[x_inv][y_inv] != 3 && inv[x_inv][y_inv] != 6)
 			if (cont == 0)
 				cont = 1;
 			else
