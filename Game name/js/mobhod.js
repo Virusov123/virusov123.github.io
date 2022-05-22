@@ -17,22 +17,22 @@ function  mobhod()
 				{
 					if (krest > 0)
 					{
-						if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx+1 - plposx)*(mbx+1 - plposx)+(mby - plposy)*(mby - plposy)) && hodvozm(mbx+1, mby))
+						if (mbrangehod(mbx, mby, plposx, plposy) && Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx+1 - plposx)*(mbx+1 - plposx)+(mby - plposy)*(mby - plposy)) && hodvozm(mbx+1, mby))
 						{
 							mobhodd(mbx, mby, mbx+1, mby);
 						}
 						else
-							if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx-1 - plposx)*(mbx-1 - plposx)+(mby - plposy)*(mby - plposy)) && hodvozm(mbx-1, mby))
+							if (mbrangehod(mbx, mby, plposx, plposy) && Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx-1 - plposx)*(mbx-1 - plposx)+(mby - plposy)*(mby - plposy)) && hodvozm(mbx-1, mby))
 							{
 								mobhodd(mbx, mby, mbx-1, mby);
 							}
 							else
-								if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby+1 - plposy)*(mby+1 - plposy)) && hodvozm(mbx, mby+1))
+								if (mbrangehod(mbx, mby, plposx, plposy) && Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby+1 - plposy)*(mby+1 - plposy)) && hodvozm(mbx, mby+1))
 								{
 									mobhodd(mbx, mby, mbx, mby+1);
 								}
 								else
-									if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby-1 - plposy)*(mby-1 - plposy)) && hodvozm(mbx, mby-1))
+									if (mbrangehod(mbx, mby, plposx, plposy) && Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) <= Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby-1 - plposy)*(mby-1 - plposy)) && hodvozm(mbx, mby-1))
 									{
 										mobhodd(mbx, mby, mbx, mby-1);
 									}
@@ -44,7 +44,7 @@ function  mobhod()
 				}
 				else
 				{
-					if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 10 && mobs[pth[1][0]][pth[1][1]][0] == 0)
+					if (mbrangehod(mbx, mby, plposx, plposy)  && mobs[pth[1][0]][pth[1][1]][0] == 0)
 					{
 						mobhodd(mbx, mby, pth[1][0], pth[1][1]);
 					}
@@ -103,6 +103,10 @@ function mbrangedam(mbx, mby, plposx, plposy)
 		{
 			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 1.8);
 		}
+		case 2:
+		{
+			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 1.8);
+		}
 		default:
 		{
 			return 0;
@@ -116,6 +120,28 @@ function mbdam(mobb)
 		case 1:
 		{
 			return 7;
+		}
+		case 2:
+		{
+			return 20;
+		}
+		default:
+		{
+			return 0;
+		}
+	}
+}
+function mbrangehod(mbx, mby, plposx, plposy)
+{
+	switch (mobs[mbx][mby][0])
+	{
+		case 1:
+		{
+			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 10);
+		}
+		case 2:
+		{
+			return 0;
 		}
 		default:
 		{

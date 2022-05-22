@@ -58,6 +58,7 @@ function genkuvsh()//генерация кувшинов
 		if (pole[grx][gry] == 0 || pole[grx][gry] == 2)
 		{
 			pole1[grx][gry] = 1;
+			
 			klvkvsh++;
 		}
 		if (klvrest > 10000)
@@ -122,9 +123,12 @@ function genluzh()//генерация луж
 	{
 		let grx = GRI(maxwidth-1);
 		let gry = GRI(maxheight-1);
+		let v1 = GRI(2);
 		if (pole[grx][gry] == 0 || pole[grx][gry] == 2)
 		{
 			pole1[grx][gry] = 2;
+			if (v1)
+				mobs[grx][gry][0] = 2;
 			klvlzh++;
 		}
 		if (klvrest > 10000)

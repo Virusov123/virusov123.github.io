@@ -3,7 +3,6 @@ function handle(e)//ход
 {
 	if (!nazh)
 	{
-		nazh = 1;
 		switch(e.code)
 		{
 			case "KeyW":
@@ -66,9 +65,15 @@ function handle(e)//ход
 				invent();
 				break;
 			}
+			case "Escape":
+			{
+				esc();
+				break;
+			}
 		}
-	draw();
 	}
+	nazh++;
+	draw();
 }
 //Вверх
 function up()

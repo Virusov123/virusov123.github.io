@@ -37,8 +37,8 @@ h1
 
 .polee
 {
-	width: 500px;
-	height: 500px;
+	width: 600px;
+	height: 600px;
 	background-color: #464646;
 	/*position: absolute;
 	left:5%;
@@ -58,7 +58,7 @@ p
 {
 	color: #E7E7E7;
 	font-weight: bold;
-	font-size: 30px;
+	font-size: 15px;
 	font-family: 'Didact Gothic', sans-serif;
 }
 .loading1
@@ -82,38 +82,43 @@ p
 .cords
 {
 	display: none;
+	font-size: 15px;
+	font-weight: normal;
 }
 .inf
 {
 	display:none;
-	font-size: 20px;
+	font-size: 15px;
+	font-weight: normal;
 }
 .bonus
 {
 	display:none;
+	font-size: 15px;
+	font-weight: normal;
 }
 .hp
 {
 	width: 200px;
-	height: 40px;
+	height: 20px;
 	background-color: #afafaf;
 }
 .fd
 {
 	width: 200px;
-	height: 40px;
+	height: 20px;
 	background-color: #afafaf;
 }
 .wt
 {
 	width: 200px;
-	height: 40px;
+	height: 20px;
 	background-color: #afafaf;
 }
 .lt
 {
 	width: 200px;
-	height: 40px;
+	height: 20px;
 	background-color: #afafaf;
 }
 .info
@@ -121,7 +126,14 @@ p
 	position: absolute;
 	top: 10px;
 	left: 10px;
-	width: 50px;
+	width: 30px;
+}
+.sett
+{
+	position: absolute;
+	top: 50px;
+	left: 10px;
+	width: 30px;
 }
 .infodiv
 {
@@ -137,9 +149,24 @@ p
 	background: rgba(0, 0, 0, 0.9);
 	border: 5px solid #9f9f9f;
 }
+.settdiv
+{
+	display: none;
+	position: absolute;
+	top: 10px;
+	left: 60px;
+	width: 85%;
+	height: 65%;
+	padding: 1px;
+	margin: 15 auto;
+	overflow: auto;
+	background: rgba(0, 0, 0, 0.9);
+	border: 5px solid #9f9f9f;
+}
 .help 
 {
-	font-size: 25px;
+	font-size: 22px;
+	font-weight: normal;
 }
 .help2 
 {
@@ -159,7 +186,7 @@ p
 	position: absolute;
 	top: 0px;
 	left: 94%;
-	font-size: 23px;
+	font-size: 18px;
 	
 }
 .auth
@@ -174,4 +201,9 @@ p
 	margin: 15 auto;
 	background: rgba(0, 0, 0, 0.9);
 	border: 5px solid #9f9f9f;
+}
+.stat
+{
+	font-size: 15px;
+	font-weight: normal;
 }

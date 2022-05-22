@@ -1,13 +1,29 @@
+var red; var green; var blue = 0; var col;
 function hpload()
 {
 	var canvas = document.getElementById("hpbar");
 	var ctx = canvas.getContext('2d');
-	var grd=ctx.createLinearGradient(-100,250,900,250);
-	grd.addColorStop(0,"#ff0000");
-	grd.addColorStop(0.5,"#ffff00");
-	grd.addColorStop(1,"#00ff00");
+	let hpp1 = 0;
+	red = 255; green = 0;
+	while (hpp1 != hp)
+	{
+		if (hpp1 < 50)
+			green+=5.1;
+		else
+			red -= 5.1;
+		hpp1++;
+	}
+	red = Math.round(red); green = Math.round(green);
+	if (red < 16)
+		col = "#0"+(red).toString(16)+(green).toString(16)+"00";
+	else
+		if (green < 16)
+			col = "#"+(red).toString(16)+"0"+(green).toString(16)+"00";
+		else
+			col = "#"+(red).toString(16)+(green).toString(16)+"00";
+	//col = "#"+(red).toString(16)+(green).toString(16)+"00";
 	ctx.beginPath();
-	ctx.fillStyle = grd;
+	ctx.fillStyle = col;
 	ctx.rect(0, 0, hp*10, 500);
 	ctx.fill();
 }
@@ -30,7 +46,7 @@ function wtload()
 	var ctx = canvas.getContext('2d');
 	ctx.clearRect(0, 0, 1000, 500);
 	ctx.beginPath();
-	if (fd>0)
+	if (wat>0)
 	{
 		ctx.fillStyle = "#229EEA";
 		ctx.rect(0, 0, Math.round(wat/watmax*1000), 500);

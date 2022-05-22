@@ -94,3 +94,24 @@ function use()
 	}
 	return 0;
 }
+function esc()
+{
+	let io = document.getElementById("settdiv");
+	if (io.style.display == "block")
+	{
+		io.style.display = "none";
+		return 0;
+	}
+	io = document.getElementById("auth");
+	if (io.style.display == "block")
+	{
+		io.style.display = "none";
+		return 0;
+	}
+	let io1 = document.getElementById("infodiv");
+	if (io1.style.display == "block")
+	{
+		io1.style.display = "none";
+		return 0;
+	}
+}
