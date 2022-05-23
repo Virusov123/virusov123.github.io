@@ -129,7 +129,7 @@ function statout()
 	document.getElementById("kl").innerHTML = "Забіта монстраў: " + kills;
 	if (hp > 0)
 	{
-		document.getElementById("hp").innerHTML = "<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas>Здароўе :"+ hp + "/" + hpmax + ";";
+		document.getElementById("hp").innerHTML = "<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas>Здароўе:"+ hp + "/" + hpmax + ";";
 		hpload();
 	}
 	else
@@ -138,34 +138,34 @@ function statout()
 	}
 	if (fd > 0)
 	{
-		document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа : " + Math.round(fd/fdmax*100) + "%;";
+		document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа:" + Math.round(fd/fdmax*100) + "%;";
 		fdload();
 	}
 	else
 	{
-		document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа : 0%;";
+		document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа:0%;";
 		fdload();
 	}
 	if (wat > 0)
 	{
-		document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада : " + Math.round(wat/watmax*100) + "%;";
+		document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада:" + Math.round(wat/watmax*100) + "%;";
 		wtload();
 	}
 	else
 	{
-		document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада : 0%;";
+		document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада:0%;";
 		wtload();
 	}
 	if (light > 0)
 	{
-		document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>Святло : " + Math.round(light/lightmax*100) + "%;";
+		document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>Святло:" + Math.round(light/lightmax*100) + "%;";
 		ltload();
 	}
 	else
 	{
 		if (light > -5)
 		{
-			document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>light : 0;";
+			document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>light:0;";
 			ltload();
 		}
 		else

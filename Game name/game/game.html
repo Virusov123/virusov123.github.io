@@ -18,6 +18,7 @@
 		<script src = "../js/game_stat.js"> </script>
 		<script src = "../js/game_invent.js"> </script>
 		<script src = "../js/addable.js"> </script>
+		<script src = "../js/settings.js"> </script>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
@@ -61,8 +62,13 @@
 	</div>
 	<div class = "settdiv" id = "settdiv">
 		<p class = "help"> Хай. Гэта налады гульні.</p>
-		<p class = "help"> Памер самой гульні: <input type = "range" min = "200" max = "1200" value = "600" id = "razmok" oninput = "razmok()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
-		<p class = "help"> XXX: <input type = "range" min = "400" max = "1200" value = "600" id = "razmok" oninput = "razmok()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+		<p class = "help"> Квадранае вакно гульні <input type = "checkbox" checked = "true" id = "kvadrchs" onchange = "razmoknchg()"> </p>
+		<p class = "help" id = "kvadr"> Памер самой гульні: <input type = "range" min = "200" max = "1200" value = "600" id = "razmok" oninput = "razmok()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+		<p class = "help" id = "kvadr1"> Шырыня самой гульні: <input type = "range" min = "200" max = "3000" value = "600" id = "razmokx" oninput = "razmokx()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+		<p class = "help" id = "kvadr2"> Вышыня самой гульні: <input type = "range" min = "200" max = "1200" value = "600" id = "razmoky" oninput = "razmoky()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+		<p class = "help"> Памер тэксту статаў: <input type = "range" min = "10" max = "40" value = "15" id = "razmtext" oninput = "razmtext()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+		<p class = "help"> Вышыня ячэек статаў: <input type = "range" min = "10" max = "40" value = "20" id = "razmbary" oninput = "razmbary()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+		<p class = "help"> Шырыня ячэек статаў: <input type = "range" min = "100" max = "600" value = "200" id = "razmbarx" oninput = "razmbarx()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
 	</div>
 	<p onclick = "author()" class = "author"> Аўтары </p>
 	<div class = "auth" id = "auth">

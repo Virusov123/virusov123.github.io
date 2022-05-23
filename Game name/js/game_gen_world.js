@@ -99,7 +99,7 @@ function genmob()//генерация мобов
 	{
 		let grx = GRI(maxwidth-1);
 		let gry = GRI(maxheight-1);
-		if ((pole[grx][gry] == 0 || pole[grx][gry] == 2) && pole1[grx][gry] == 0 && mobs[grx][gry][0] == 0)
+		if ((pole[grx][gry] == 0 || pole[grx][gry] == 2) && pole1[grx][gry] == 0 && mobs[grx][gry][0] == 0 && grx != plposx && gry != plposy)
 		{
 			mobs[grx][gry][0] = 1;
 			mobs[grx][gry][2] = 20;
@@ -108,14 +108,16 @@ function genmob()//генерация мобов
 		}
 		if (klvrest > 10000)
 		{
-			break;
 			console.log("errorgenmob");
+			break;
 		}
 		klvrest++;
 	}
 }
+var vadz;
 function genluzh()//генерация луж
 {
+	vadz = 0;
 	let klvlzh = 0;
 	let lz = GRI(3);
 	klvrest = 0;
@@ -128,7 +130,10 @@ function genluzh()//генерация луж
 		{
 			pole1[grx][gry] = 2;
 			if (v1)
+			{
 				mobs[grx][gry][0] = 2;
+				vadz++;
+			}
 			klvlzh++;
 		}
 		if (klvrest > 10000)
