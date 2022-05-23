@@ -127,50 +127,103 @@ function statout()
 	document.getElementById("coords").innerHTML = "x: " + plposx + "y: " + plposy;
 	document.getElementById("lv").innerHTML = "Паверх: -" + lvl;
 	document.getElementById("kl").innerHTML = "Забіта монстраў: " + kills;
-	if (hp > 0)
+	let check = document.getElementById("stattext").checked;
+	if (check)
 	{
-		document.getElementById("hp").innerHTML = "<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas>Здароўе:"+ hp + "/" + hpmax + ";";
-		hpload();
-	}
-	else
-	{
-		window.location.href = '../html/deathhp.html';
-	}
-	if (fd > 0)
-	{
-		document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа:" + Math.round(fd/fdmax*100) + "%;";
-		fdload();
-	}
-	else
-	{
-		document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа:0%;";
-		fdload();
-	}
-	if (wat > 0)
-	{
-		document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада:" + Math.round(wat/watmax*100) + "%;";
-		wtload();
-	}
-	else
-	{
-		document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада:0%;";
-		wtload();
-	}
-	if (light > 0)
-	{
-		document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>Святло:" + Math.round(light/lightmax*100) + "%;";
-		ltload();
-	}
-	else
-	{
-		if (light > -5)
+		if (hp > 0)
 		{
-			document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>light:0;";
+			document.getElementById("hp").innerHTML = "<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas>Здароўе:"+ hp + "/" + hpmax + ";";
+			hpload();
+		}
+		else
+		{
+			window.location.href = '../html/deathhp.html';
+		}
+		if (fd > 0)
+		{
+			document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа:" + Math.round(fd/fdmax*100) + "%;";
+			fdload();
+		}
+		else
+		{
+			document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа:0%;";
+			fdload();
+		}
+		if (wat > 0)
+		{
+			document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада:" + Math.round(wat/watmax*100) + "%;";
+			wtload();
+		}
+		else
+		{
+			document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада:0%;";
+			wtload();
+		}
+		if (light > 0)
+		{
+			document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>Святло:" + Math.round(light/lightmax*100) + "%;";
 			ltload();
 		}
 		else
 		{
-			window.location.href = '../html/deathlight.html';
+			if (light > -5)
+			{
+				document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>light:0;";
+				ltload();
+			}
+			else
+			{
+				window.location.href = '../html/deathlight.html';
+			}
+		}
+	}
+	else
+	{
+		if (hp > 0)
+		{
+			document.getElementById("hp").innerHTML = "<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas>";
+			hpload();
+		}
+		else
+		{
+			window.location.href = '../html/deathhp.html';
+		}
+		if (fd > 0)
+		{
+			document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>";
+			fdload();
+		}
+		else
+		{
+			document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>";
+			fdload();
+		}
+		if (wat > 0)
+		{
+			document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>";
+			wtload();
+		}
+		else
+		{
+			document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>";
+			wtload();
+		}
+		if (light > 0)
+		{
+			document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>";
+			ltload();
+		}
+		else
+		{
+			if (light > -5)
+			{
+				document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>";
+				ltload();
+			}
+			else
+			{
+				window.location.href = '../html/deathlight.html';
+			}
 		}
 	}
 }

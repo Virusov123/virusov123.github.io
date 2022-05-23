@@ -208,3 +208,13 @@ p
 	font-size: 15px;
 	font-weight: normal;
 }
+.help3
+{
+	font-size: 25px;
+	font-weight: normal;
+}
+.flex1
+{
+	display: flex;
+	justify-content: space-around;
+}

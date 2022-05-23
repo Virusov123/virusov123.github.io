@@ -61,14 +61,21 @@
 		<p class = "help"> УВАГА! ГУЛЬНЯ НА СТАДЫІ РАСПРАЦОЎКІ. ТЭКТСТУРЫ НЕ ЗАВЕРШАНЫЯ. МОГУЦЬ ПРЫСУТНІЧАЦЬ БАГІ. КАЛІ ВЫ ЗНАЙШЛІ БАГ, ЗВЯРНІЦЕСЯ ДА АДНОГА З АЎТАРАЎ ПА СПАСЫЛЦЫ.</p>
 	</div>
 	<div class = "settdiv" id = "settdiv">
-		<p class = "help"> Хай. Гэта налады гульні.</p>
-		<p class = "help"> Квадранае вакно гульні <input type = "checkbox" checked = "true" id = "kvadrchs" onchange = "razmoknchg()"> </p>
-		<p class = "help" id = "kvadr"> Памер самой гульні: <input type = "range" min = "200" max = "1200" value = "600" id = "razmok" oninput = "razmok()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
-		<p class = "help" id = "kvadr1"> Шырыня самой гульні: <input type = "range" min = "200" max = "3000" value = "600" id = "razmokx" oninput = "razmokx()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
-		<p class = "help" id = "kvadr2"> Вышыня самой гульні: <input type = "range" min = "200" max = "1200" value = "600" id = "razmoky" oninput = "razmoky()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
-		<p class = "help"> Памер тэксту статаў: <input type = "range" min = "10" max = "40" value = "15" id = "razmtext" oninput = "razmtext()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
-		<p class = "help"> Вышыня ячэек статаў: <input type = "range" min = "10" max = "40" value = "20" id = "razmbary" oninput = "razmbary()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
-		<p class = "help"> Шырыня ячэек статаў: <input type = "range" min = "100" max = "600" value = "200" id = "razmbarx" oninput = "razmbarx()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+		<p class = "help3"> Хай. Гэта налады гульні.<br></p>
+		<div class = "flex1">
+			<div>
+				<p class = "help"> Квадранае вакно гульні <input type = "checkbox" checked = "true" id = "kvadrchs" onchange = "razmoknchg()"> </p>
+				<p class = "help" id = "kvadr"> Памер самой гульні: <input type = "range" min = "200" max = "1200" value = "600" id = "razmok" oninput = "razmok()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+				<p class = "help" id = "kvadr1"> Шырыня самой гульні: <input type = "range" min = "200" max = "3000" value = "600" id = "razmokx" oninput = "razmokx()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+				<p class = "help" id = "kvadr2"> Вышыня самой гульні: <input type = "range" min = "200" max = "1200" value = "600" id = "razmoky" oninput = "razmoky()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+			</div>
+			<div>
+				<p class = "help"> Тэкст статаў <input type = "checkbox" checked = "true" id = "stattext" onchange = "stattextchg()"> </p>
+				<p class = "help" id = "stattextsize"> Памер тэксту статаў: <input type = "range" min = "10" max = "40" value = "15" id = "razmtext" oninput = "razmtext()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+				<p class = "help"> Вышыня ячэек статаў: <input type = "range" min = "10" max = "40" value = "20" id = "razmbary" oninput = "razmbary()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+				<p class = "help"> Шырыня ячэек статаў: <input type = "range" min = "100" max = "600" value = "200" id = "razmbarx" oninput = "razmbarx()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+			</div>
+		</div>
 	</div>
 	<p onclick = "author()" class = "author"> Аўтары </p>
 	<div class = "auth" id = "auth">

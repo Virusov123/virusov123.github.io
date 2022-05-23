@@ -104,3 +104,19 @@ function razmoky()
 	let pole = document.getElementById("pole");
 	pole.style.height = inp.value+"px";
 }
+function stattextchg()
+{
+	let chs = document.getElementById("stattext");
+	if (chs.checked)
+	{
+		let nekv = document.getElementById("stattextsize");
+		nekv.style.display = "block";
+		statout();
+	}
+	else
+	{
+		let nekv = document.getElementById("stattextsize");
+		nekv.style.display = "none";
+		statout();
+	}
+}
