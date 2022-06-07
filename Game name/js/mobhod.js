@@ -50,7 +50,7 @@ function  mobhod()
 					hp-=mbdam(mobs[mbx][mby][0]);
 					if (hp <= 0)
 					{
-						window.location.href = 'death.html?&'+mbname(mobs[mbx][mby][0])+'&'+lvl+'&'+kills;
+						//window.location.href = 'death.html?&'+mbname(mobs[mbx][mby][0])+'&'+lvl+'&'+kills;
 					}
 				}
 				else
