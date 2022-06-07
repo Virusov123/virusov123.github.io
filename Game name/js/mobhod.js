@@ -1,4 +1,4 @@
-function  mobhod()
+function mobhod()
 {
 	let inf = document.getElementById("inf");
 	inf.innerHTML = "";
@@ -45,16 +45,16 @@ function  mobhod()
 									}
 					}
 				}
-				if (mbrangedam(mbx, mby, plposx, plposy) && !krest)
+				if (mbrangedam(mbx, mby, plposx, plposy) && !krest && hp > mbdam(mobs[mbx][mby][0]))
 				{
 					hp-=mbdam(mobs[mbx][mby][0]);
-					if (hp <= 0)
-					{
-						//window.location.href = 'death.html?&'+mbname(mobs[mbx][mby][0])+'&'+lvl+'&'+kills;
-					}
 				}
 				else
 				{
+					if (mbrangedam(mbx, mby, plposx, plposy) && !krest && hp <= mbdam(mobs[mbx][mby][0]))
+					{
+						window.location.href = 'death.html?&'+mbname(mobs[mbx][mby][0])+'&'+lvl+'&'+kills;
+					}
 					if (mbrangehod(mbx, mby, plposx, plposy)  && mobs[pth[1][0]][pth[1][1]][0] == 0)
 					{
 						mobhodd(mbx, mby, pth[1][0], pth[1][1]);

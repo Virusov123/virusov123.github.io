@@ -19,20 +19,20 @@ function ttt()
 		}
 		case "light":
 		{
-			document.getElementById("score").innerHTML = "Вы памёрлі ад таго, што ў цемры вас з'улі невядомыя пачвары.";
+			document.getElementById("score").innerHTML = "Вы памёрлі ад таго, што ў цемры вас з'елі невядомыя пачвары.";
 			break;
 		}
-		case "Хадунок":
+		case "%D0%A5%D0%B0%D0%B4%D1%83%D0%BD%D0%BE%D0%BA":
 		{
 			document.getElementById("score").innerHTML = "Вы памёрлі ад Хадунка.";
 			break;
 		}
-		case "Вадзянік":
+		case "%D0%92%D0%B0%D0%B4%D0%B7%D1%8F%D0%BD%D1%96%D0%BA":
 		{
 			document.getElementById("score").innerHTML = "Вы памёрлі ад Вадзяніка.";
 			break;
 		}
-		case "Прывід":
+		case "%D0%9F%D1%80%D1%8B%D0%B2%D1%96%D0%B4":
 		{
 			document.getElementById("score").innerHTML = "Вы памёрлі ад Прывіда.";
 			break;
