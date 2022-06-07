@@ -112,6 +112,16 @@ function drawmain()
 								ctx.drawImage(mob1l,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
 							break;
 						}
+						case 2:
+						{
+							ctx.drawImage(vadzan,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
+						case 3:
+						{
+							ctx.drawImage(pryv,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							break;
+						}
 					}
 				}
 			}

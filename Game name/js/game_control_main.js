@@ -86,17 +86,19 @@ function up()
 			y_inv--;
 		return 0;	
 	}
-	if (mobs[plposx][plposy-1][0] == 1)
+	if (mobs[plposx][plposy-1][0] != 0)
 	{
 		mobs[plposx][plposy-1][2] -= dam;
 		if (mobs[plposx][plposy-1][2] <=0)
 		{
+			if (mobs[plposx][plposy-1][0] == 3)
+				pryvi = 0;
 			mobs[plposx][plposy-1][0] = 0;
 			kills++;
 		}
 		else
 		{
-			mobs[plposx][plposy][0] = 1;
+			mobs[plposx][plposy][0] = mobs[plposx][plposy-1][0];
 			mobs[plposx][plposy][1] = 1;
 			mobs[plposx][plposy][2] = mobs[plposx][plposy-1][2];
 			mobs[plposx][plposy-1][0] = 0;
@@ -123,17 +125,19 @@ function down()
 			y_inv++;
 		return 0;	
 	}
-	if (mobs[plposx][plposy+1][0] == 1)
+	if (mobs[plposx][plposy+1][0] != 0)
 	{
 		mobs[plposx][plposy+1][2] -= dam;
 		if (mobs[plposx][plposy+1][2] <=0)
 		{
+			if (mobs[plposx][plposy+1][0] == 3)
+				pryvi = 0;
 			mobs[plposx][plposy+1][0] = 0;
 			kills++;
 		}
 		else
 		{
-			mobs[plposx][plposy][0] = 1;
+			mobs[plposx][plposy][0] = mobs[plposx][plposy+1][0];
 			mobs[plposx][plposy][1] = 1;
 			mobs[plposx][plposy][2] = mobs[plposx][plposy+1][2];
 			mobs[plposx][plposy+1][0] = 0;
@@ -172,17 +176,19 @@ function left()
 			x_inv--;
 		return 0;
 	}
-	if (mobs[plposx-1][plposy][0] == 1)
+	if (mobs[plposx-1][plposy][0] != 0)
 	{
 		mobs[plposx-1][plposy][2] -= dam;
 		if (mobs[plposx-1][plposy][2] <=0)
 		{
+			if (mobs[plposx-1][plposy][0] == 3)
+				pryvi = 0;
 			mobs[plposx-1][plposy][0] = 0;
 			kills++;
 		}
 		else
 		{
-			mobs[plposx][plposy][0] = 1;
+			mobs[plposx][plposy][0] = mobs[plposx][plposy+1][0];
 			mobs[plposx][plposy][1] = 1;
 			mobs[plposx][plposy][2] = mobs[plposx-1][plposy][2];
 			mobs[plposx-1][plposy][0] = 0;
@@ -222,17 +228,19 @@ function right()
 			x_inv++;
 		return 0;	
 	}
-	if (mobs[plposx+1][plposy][0] == 1)
+	if (mobs[plposx+1][plposy][0] != 0)
 	{
 		mobs[plposx+1][plposy][2] -= dam;
 		if (mobs[plposx+1][plposy][2] <=0)
 		{
+			if (mobs[plposx+1][plposy][0] == 3)
+				pryvi = 0;
 			mobs[plposx+1][plposy][0] = 0;
 			kills++;
 		}
 		else
 		{
-			mobs[plposx][plposy][0] = 1;
+			mobs[plposx][plposy][0] = mobs[plposx][plposy+1][0];
 			mobs[plposx][plposy][1] = 1;
 			mobs[plposx][plposy][2] = mobs[plposx+1][plposy][2];
 			mobs[plposx+1][plposy][0] = 0;

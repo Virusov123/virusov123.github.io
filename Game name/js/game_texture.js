@@ -55,3 +55,7 @@
 	mob1l.src = "../img/mobs/mob1l.png";
 	var mob1r = new Image;
 	mob1r.src = "../img/mobs/mob1r.png";
+	var vadzan = new Image;
+	vadzan.src = "../img/mobs/vadz.png";
+	var pryv = new Image;
+	pryv.src = "../img/mobs/glaziki.png";

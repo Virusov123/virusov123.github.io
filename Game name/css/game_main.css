@@ -61,6 +61,13 @@ p
 	font-size: 15px;
 	font-family: 'Didact Gothic', sans-serif;
 }
+span
+{
+	color: #E7E7E7;
+	font-weight: bold;
+	font-size: 15px;
+	font-family: 'Didact Gothic', sans-serif;
+}
 .loading1
 {
 	position: absolute;

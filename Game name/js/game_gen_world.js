@@ -88,10 +88,11 @@ function gensndk()//генерация сундуков
 		klvrest++;
 	}
 }
-var klvmb = 0;
+var klvmb1 = 0;
+var klvmb3 = 0;
 function genmob()//генерация мобов
 {
-	klvmb = 0;
+	let klvmb = 0;
 	mob = Math.round((kolkl / 100) * Math.sqrt(lvl));
 	let mxkk = GRI(mob+1) + Math.round(Math.sqrt(lvl));
 	klvrest = 0;
@@ -101,9 +102,20 @@ function genmob()//генерация мобов
 		let gry = GRI(maxheight-1);
 		if ((pole[grx][gry] == 0 || pole[grx][gry] == 2) && pole1[grx][gry] == 0 && mobs[grx][gry][0] == 0 && grx != plposx && gry != plposy)
 		{
-			mobs[grx][gry][0] = 1;
-			mobs[grx][gry][2] = 20;
-			mobs[grx][gry][3] = 0;
+			if (!GRI(2))
+			{
+				mobs[grx][gry][0] = 1;
+				mobs[grx][gry][2] = 20;
+				mobs[grx][gry][3] = 0;
+				klvmb1++;
+			}
+			else
+			{
+				mobs[grx][gry][0] = 3;
+				mobs[grx][gry][2] = 1;
+				mobs[grx][gry][3] = 0;
+				klvmb3++;
+			}
 			klvmb++;
 		}
 		if (klvrest > 10000)
@@ -132,6 +144,7 @@ function genluzh()//генерация луж
 			if (v1)
 			{
 				mobs[grx][gry][0] = 2;
+				mobs[grx][gry][2] = 8;
 				vadz++;
 			}
 			klvlzh++;

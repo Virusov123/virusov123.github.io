@@ -81,6 +81,16 @@ function debug()//debug режим (миникарта и координаты)
 					ctx.drawImage(mob1l,i*100, j*100, 100, 100);
 					break;
 				}
+				case 2:
+				{
+					ctx.drawImage(vadzan,i*100, j*100, 100, 100);
+					break;
+				}
+				case 3:
+				{
+					ctx.drawImage(pryv,i*100, j*100, 100, 100);
+					break;
+				}
 			}
 		}
 	}

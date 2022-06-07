@@ -1,6 +1,10 @@
 function next_hod()
 {
 	light--;
+	if (light <= -5)
+	{
+		window.location.href = 'death.html?&light&'+lvl+'&'+kills;
+	}
 	if (krest)
 		krest--;
 	if (superreg > 0)
@@ -21,6 +25,10 @@ function next_hod()
 	{
 		wat--;
 		hp-=8;
+		if (hp <= 0)
+		{
+			window.location.href = 'death.html?&water&'+lvl+'&'+kills;
+		}
 	}
 	if (fd > 0)
 		fd--;
@@ -28,6 +36,10 @@ function next_hod()
 	{
 		fd--;
 		hp-=5;
+		if (hp <= 0)
+		{
+			window.location.href = 'death.html?&food&'+lvl+'&'+kills;
+		}
 	}
 	if (Math.round(fd/fdmax*100) > 70 && Math.round(wat/watmax*100) > 70 && hp < hpmax && perreg > 2)
 	{

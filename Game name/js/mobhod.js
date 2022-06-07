@@ -11,7 +11,14 @@ function  mobhod()
 				if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 3)
 				{
 					inf.style.display = "block";
-					inf.innerHTML += "Слабая пачвара. Сіла 7. HP: " + mobs[mbx][mby][2] + ";<br>";
+					if (mobs[mbx][mby][0] == 3)
+					{
+						light--;
+						inf.innerHTML += mbname(mobs[mbx][mby][0]) + ". Сіла = " + mbdam(mobs[mbx][mby][0]) + ". HP: " + mobs[mbx][mby][2] + ". Факел тухне хутчэй;<br>";
+						pryvi = 1;
+					}
+					else
+						inf.innerHTML += mbname(mobs[mbx][mby][0]) + ". Сіла = " + mbdam(mobs[mbx][mby][0]) + ". HP: " + mobs[mbx][mby][2] + ";<br>";
 				}
 				if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 2.2)
 				{
@@ -41,6 +48,10 @@ function  mobhod()
 				if (mbrangedam(mbx, mby, plposx, plposy) && !krest)
 				{
 					hp-=mbdam(mobs[mbx][mby][0]);
+					if (hp <= 0)
+					{
+						window.location.href = 'death.html?&'+mbname(mobs[mbx][mby][0])+'&'+lvl+'&'+kills;
+					}
 				}
 				else
 				{
@@ -50,41 +61,44 @@ function  mobhod()
 					}
 					else
 					{
-						let v1 = GRI(2);
-						let v2 = GRI(2);
-						let v3 = GRI(2);
-						let v4 = GRI(2);
-						if (v1)
+						if (mbrangehod(mbx, mby, plposx, plposy))
 						{
-							if (hodvozm(mbx+1, mby))
-							{
-								mobhodd(mbx, mby, mbx+1, mby);
-							}
-						}
-						else
+							let v1 = GRI(2);
+							let v2 = GRI(2);
+							let v3 = GRI(2);
+							let v4 = GRI(2);
 							if (v1)
 							{
-								if (hodvozm(mbx-1, mby))
+								if (hodvozm(mbx+1, mby))
 								{
-									mobhodd(mbx, mby, mbx-1, mby);
+									mobhodd(mbx, mby, mbx+1, mby);
 								}
 							}
 							else
 								if (v1)
 								{
-									if (hodvozm(mbx, mby+1))
+									if (hodvozm(mbx-1, mby))
 									{
-										mobhodd(mbx, mby, mbx, mby+1);
+										mobhodd(mbx, mby, mbx-1, mby);
 									}
 								}
 								else
 									if (v1)
 									{
-										if (hodvozm(mbx, mby-1))
+										if (hodvozm(mbx, mby+1))
 										{
-											mobhodd(mbx, mby, mbx, mby-1);
+											mobhodd(mbx, mby, mbx, mby+1);
 										}
 									}
+									else
+										if (v1)
+										{
+											if (hodvozm(mbx, mby-1))
+											{
+												mobhodd(mbx, mby, mbx, mby-1);
+											}
+										}
+						}
 					}
 				}
 			}
@@ -104,6 +118,10 @@ function mbrangedam(mbx, mby, plposx, plposy)
 			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 1.8);
 		}
 		case 2:
+		{
+			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 1.1);
+		}
+		case 3:
 		{
 			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 1.8);
 		}
@@ -125,9 +143,35 @@ function mbdam(mobb)
 		{
 			return 20;
 		}
+		case 3:
+		{
+			return 15;
+		}
 		default:
 		{
 			return 0;
+		}
+	}
+}
+function mbname(mobb)
+{
+	switch (mobb)
+	{
+		case 1:
+		{
+			return "Хадунок";
+		}
+		case 2:
+		{
+			return "Вадзянік";
+		}
+		case 3:
+		{
+			return "Прывід";
+		}
+		default:
+		{
+			return "Невядомая пачвара";
 		}
 	}
 }
@@ -142,6 +186,10 @@ function mbrangehod(mbx, mby, plposx, plposy)
 		case 2:
 		{
 			return 0;
+		}
+		case 3:
+		{
+			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 5 && !GRI(2)) ;
 		}
 		default:
 		{

@@ -3,6 +3,7 @@ function hpload()
 {
 	var canvas = document.getElementById("hpbar");
 	var ctx = canvas.getContext('2d');
+	ctx.clearRect(0, 0, 1000, 500);
 	let hpp1 = 0;
 	red = 255; green = 0;
 	while (hpp1 != hp)
@@ -63,7 +64,10 @@ function ltload()
 	{
 		if (light>0)
 		{
-			ctx.fillStyle = "#D1D61B";
+			if (!pryvi)
+				ctx.fillStyle = "#D1D61B";
+			else
+				ctx.fillStyle = "#E3A800";
 			ctx.rect(0, 0, Math.round(light/lightmax*800), 500);
 			ctx.fill();
 		}
@@ -130,100 +134,72 @@ function statout()
 	let check = document.getElementById("stattext").checked;
 	if (check)
 	{
-		if (hp > 0)
-		{
-			document.getElementById("hp").innerHTML = "<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas>Здароўе:"+ hp + "/" + hpmax + ";";
-			hpload();
-		}
-		else
-		{
-			window.location.href = '../html/deathhp.html';
-		}
+		document.getElementById("hp").innerHTML = "Здароўе:"+ hp + "/" + hpmax + ";<br>";
+		hpload();
 		if (fd > 0)
 		{
-			document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа:" + Math.round(fd/fdmax*100) + "%;";
+			document.getElementById("fd").innerHTML = "Ежа:" + Math.round(fd/fdmax*100) + "%;<br>";
 			fdload();
 		}
 		else
 		{
-			document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>Ежа:0%;";
+			document.getElementById("fd").innerHTML = "Ежа:0%;<br>";
 			fdload();
 		}
 		if (wat > 0)
 		{
-			document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада:" + Math.round(wat/watmax*100) + "%;";
+			document.getElementById("wat").innerHTML = "Вада:" + Math.round(wat/watmax*100) + "%;<br>";
 			wtload();
 		}
 		else
 		{
-			document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>Вада:0%;";
+			document.getElementById("wat").innerHTML = "Вада:0%;<br>";
 			wtload();
 		}
 		if (light > 0)
 		{
-			document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>Святло:" + Math.round(light/lightmax*100) + "%;";
+			document.getElementById("lt").innerHTML = "Святло:" + Math.round(light/lightmax*100) + "%;<br>";
 			ltload();
 		}
 		else
 		{
-			if (light > -5)
-			{
-				document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>light:0;";
-				ltload();
-			}
-			else
-			{
-				window.location.href = '../html/deathlight.html';
-			}
+			document.getElementById("lt").innerHTML = "Святло:0;<br>";
+			ltload();
 		}
 	}
 	else
 	{
-		if (hp > 0)
-		{
-			document.getElementById("hp").innerHTML = "<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas>";
-			hpload();
-		}
-		else
-		{
-			window.location.href = '../html/deathhp.html';
-		}
+		document.getElementById("hp").innerHTML = "<br>";
+		hpload();
 		if (fd > 0)
 		{
-			document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>";
+			document.getElementById("fd").innerHTML = "<br>";
 			fdload();
 		}
 		else
 		{
-			document.getElementById("fd").innerHTML = "<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas>";
+			document.getElementById("fd").innerHTML = "<br>";
 			fdload();
 		}
 		if (wat > 0)
 		{
-			document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>";
+			document.getElementById("wat").innerHTML = "<br>";
 			wtload();
 		}
 		else
 		{
-			document.getElementById("wat").innerHTML = "<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas>";
+			document.getElementById("wat").innerHTML = "<br>";
 			wtload();
 		}
 		if (light > 0)
 		{
-			document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>";
+			document.getElementById("lt").innerHTML = "<br>";
 			ltload();
 		}
 		else
 		{
-			if (light > -5)
-			{
-				document.getElementById("lt").innerHTML = "<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas>";
-				ltload();
-			}
-			else
-			{
-				window.location.href = '../html/deathlight.html';
-			}
+			document.getElementById("lt").innerHTML = "<br>";
+			ltload();
 		}
 	}
 }
