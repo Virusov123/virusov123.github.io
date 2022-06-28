@@ -19,6 +19,7 @@
 		<script src = "../js/game_invent.js"> </script>
 		<script src = "../js/addable.js"> </script>
 		<script src = "../js/settings.js"> </script>
+		<script src = "../js/taptap.js"> </script>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
@@ -30,8 +31,8 @@
 	<img class = "loadingfon" id = "loadf" src = "../img/loadingfon.png">
 	<div class = "osn">
 		<div class = "polya" id = "polya">
-			<canvas id = "pole1" class = "polee1" width = "7000" height = "7000"></canvas>
-			<canvas id = "pole" class = "polee" width = "7000" height = "7000"></canvas>
+			<canvas id = "pole1" class = "polee1" width = "7000" height = "7000" onclick = "tap(event)" onselectstart="return false" onmousedown="return false" ></canvas>
+			<canvas id = "pole" class = "polee" width = "7000" height = "7000" onclick = "tap(event)" onselectstart="return false" onmousedown="return false"></canvas>
 		</div>
 		<div class  = 'stats' id = 'sts'>
 			<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas><span class = "stat" id = 'hp'> &nbps; </span><p></p>
@@ -43,6 +44,7 @@
 			<p id = 'bns' class = "bonus"> &nbps; </p>
 			<p id = 'inf' class = "inf"> &nbps; </p>
 			<p id = "coords" class = "cords">&nbsp; </p>
+			<button onclick="invent()">Адчыніць/Зачыніць інвентар</button>
 		</div>
 		<canvas id = "poleprov" class = "minimap" width = "3100" height = "3100"> </canvas>
 	</div>

@@ -17,7 +17,7 @@ function drawinv()
 				case 0:
 				{
 					ctx.strokeRect(i*1000, j*1000, 1000, 1000);
-						break;
+					break;
 				}
 				case 1:
 				{
@@ -120,7 +120,10 @@ function drawinv()
 				ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
 				ctx.strokeStyle = "slategray";
 				ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
+				but1 = [xncont+500, yvcont+500, xncont+2000, yvcont+1000]; 
 				ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
+				but2 = [xncont+2100, yvcont+500, xncont+3600, yvcont+1000];
+				but3 = [10000, 10000, 10000, 10000];
 				ctx.strokeStyle = "white";
 				if (!cont)
 					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
@@ -139,7 +142,10 @@ function drawinv()
 				ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
 				ctx.strokeStyle = "slategray";
 				ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
+				but1 = [xncont+500, yvcont+500, xncont+2000, yvcont+1000]; 
 				ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
+				but2 = [xncont+2100, yvcont+500, xncont+3600, yvcont+1000];
+				but3 = [10000, 10000, 10000, 10000];
 				ctx.strokeStyle = "white";
 				if (!cont)
 					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
@@ -160,8 +166,11 @@ function drawinv()
 				ctx.fillText("Выкінуць", xncont+3300, yvcont+850);
 				ctx.strokeStyle = "slategray";
 				ctx.strokeRect(xncont+100, yvcont+500, 1000, 500);
+				but1 = [xncont+100, yvcont+500, xncont+1100, yvcont+1000];
 				ctx.strokeRect(xncont+1200, yvcont+500, 1500, 500);
+				but2 = [xncont+1200, yvcont+500, xncont+2700, yvcont+1000];
 				ctx.strokeRect(xncont+2800, yvcont+500, 1000, 500);
+				but3 = [xncont+2800, yvcont+500, xncont+3800, yvcont+1000];
 				ctx.strokeStyle = "white";
 				if (cont == 0)
 					ctx.strokeRect(xncont+100, yvcont+500, 1000, 500);
@@ -184,7 +193,10 @@ function drawinv()
 				ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
 				ctx.strokeStyle = "slategray";
 				ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
+				but1 = [xncont+500, yvcont+500, xncont+2000, yvcont+1000]; 
 				ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
+				but2 = [xncont+2100, yvcont+500, xncont+3600, yvcont+1000];
+				but3 = [10000, 10000, 10000, 10000];
 				ctx.strokeStyle = "white";
 				if (!cont)
 					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
@@ -204,7 +216,10 @@ function drawinv()
 				ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
 				ctx.strokeStyle = "slategray";
 				ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
+				but1 = [xncont+500, yvcont+500, xncont+2000, yvcont+1000]; 
 				ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
+				but2 = [xncont+2100, yvcont+500, xncont+3600, yvcont+1000];
+				but3 = [10000, 10000, 10000, 10000];
 				ctx.strokeStyle = "white";
 				if (!cont)
 					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
@@ -224,9 +239,12 @@ function drawinv()
 				ctx.fillText("Асвяціць", xncont+2200, yvcont+850);
 				ctx.fillText("Выкінуць", xncont+3300, yvcont+850);
 				ctx.strokeStyle = "slategray";
-				ctx.strokeRect(xncont+100, yvcont+500, 1500, 500);
-				ctx.strokeRect(xncont+1700, yvcont+500, 1000, 500);
+				ctx.strokeRect(xncont+100, yvcont+500, 1000, 500);
+				but1 = [xncont+100, yvcont+500, xncont+1100, yvcont+1000];
+				ctx.strokeRect(xncont+1200, yvcont+500, 1500, 500);
+				but2 = [xncont+1200, yvcont+500, xncont+2700, yvcont+1000];
 				ctx.strokeRect(xncont+2800, yvcont+500, 1000, 500);
+				but3 = [xncont+2800, yvcont+500, xncont+3800, yvcont+1000];
 				ctx.strokeStyle = "white";
 				if (cont == 0)
 					ctx.strokeRect(xncont+100, yvcont+500, 1500, 500);
@@ -249,7 +267,10 @@ function drawinv()
 				ctx.fillText("Выкінуць", xncont+2850, yvcont+850);
 				ctx.strokeStyle = "slategray";
 				ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
+				but1 = [xncont+500, yvcont+500, xncont+2000, yvcont+1000]; 
 				ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
+				but2 = [xncont+2100, yvcont+500, xncont+3600, yvcont+1000];
+				but3 = [10000, 10000, 10000, 10000];
 				ctx.strokeStyle = "white";
 				if (!cont)
 					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
@@ -268,7 +289,10 @@ function drawinv()
 				ctx.fillText("Адмена", xncont+2850, yvcont+850);
 				ctx.strokeStyle = "slategray";
 				ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);
+				but1 = [xncont+500, yvcont+500, xncont+2000, yvcont+1000]; 
 				ctx.strokeRect(xncont+2100, yvcont+500, 1500, 500);
+				but2 = [xncont+2100, yvcont+500, xncont+3600, yvcont+1000];
+				but3 = [10000, 10000, 10000, 10000];
 				ctx.strokeStyle = "white";
 				if (!cont)
 					ctx.strokeRect(xncont+500, yvcont+500, 1500, 500);

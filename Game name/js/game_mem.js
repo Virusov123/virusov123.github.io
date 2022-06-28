@@ -1,6 +1,6 @@
 var pole = []; var pole1 = []; var inv = []; var items = []; var mobs = [];
 var opinv = 0; var debugonn = 0; var x_inv = 0; var y_inv = 0;
-var opcontmenu = 0; var cont = 0;
+var opcontmenu = 0; var cont = 0; but1 = [0, 0, 0, 0]; but2 = [0, 0, 0, 0]; but3 = [0, 0, 0, 0];
 var maxwidth = 31; var maxheight = 31; var minsz = 7; var maxsz = 3; var lvl = 1;
 var plposx; var plposy; var lev = 0;
 var nazh = 0; var tryap = 0; var krest = 0; var hola = 0; var mech = 0; var dam = 10; var pryvi = 0;

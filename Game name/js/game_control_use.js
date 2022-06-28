@@ -53,7 +53,8 @@ function use()
 	}
 	if (opinv)
 	{
-		opcontmenu = 1;
+		if (inv[x_inv][y_inv] != 0)
+			opcontmenu = 1;
 		return 0;
 	}
 	if (pole1[plposx][plposy] == 4)

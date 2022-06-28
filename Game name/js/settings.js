@@ -22,6 +22,12 @@ function razmok()
 	let pole = document.getElementById("pole");
 	pole.style.width = inp.value+"px";
 	pole.style.height = inp.value+"px";
+	let pole1 = document.getElementById("pole1");
+	pole1.style.width = inp.value+"px";
+	pole1.style.height = inp.value+"px";
+	let polya = document.getElementById("polya");
+	polya.style.width = inp.value+"px";
+	polya.style.height = inp.value+"px";
 }
 //document.getElementsByClassName('mystyle')[0].style.margin = "50px";
 function razmtext()
@@ -97,12 +103,20 @@ function razmokx()
 	let inp = document.getElementById("razmokx");
 	let pole = document.getElementById("pole");
 	pole.style.width = inp.value+"px";
+	let pole1 = document.getElementById("pole1");
+	pole1.style.width = inp.value+"px";
+	let polya = document.getElementById("polya");
+	polya.style.width = inp.value+"px";
 }
 function razmoky()
 {
 	let inp = document.getElementById("razmoky");
 	let pole = document.getElementById("pole");
 	pole.style.height = inp.value+"px";
+	let pole1 = document.getElementById("pole1");
+	pole1.style.height = inp.value+"px";
+	let polya = document.getElementById("polya");
+	polya.style.height = inp.value+"px";
 }
 function stattextchg()
 {

@@ -191,6 +191,7 @@ function invent()
 		pers.style.display = "block";
 		var cord = document.getElementById("inf");
 		cord.style.display = 'none';
+		draw();
 		return 0;
 	}
 	srtinv();
@@ -199,5 +200,6 @@ function invent()
 	pers.style.display = "none";
 	var cord = document.getElementById("inf");
 	cord.style.display = 'block';
+	draw();
 	return 0;
 }
