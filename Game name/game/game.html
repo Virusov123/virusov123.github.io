@@ -29,8 +29,10 @@
 	<img class = "loading1" id = "load" src = "../img/loading.png">
 	<img class = "loadingfon" id = "loadf" src = "../img/loadingfon.png">
 	<div class = "osn">
-		<canvas id = "pole" class = "polee" width = "7000" height = "7000"> 
-		<p>Адсутнічае падтрымка canvas, калі ласка, зайдзіце праз іншы браузер</p></canvas>
+		<div class = "polya" id = "polya">
+			<canvas id = "pole1" class = "polee1" width = "7000" height = "7000"></canvas>
+			<canvas id = "pole" class = "polee" width = "7000" height = "7000"></canvas>
+		</div>
 		<div class  = 'stats' id = 'sts'>
 			<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas><span class = "stat" id = 'hp'> &nbps; </span><p></p>
 			<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas><span class = "stat" id = 'fd'> &nbps; </span><p></p>
@@ -73,7 +75,7 @@
 				<p class = "help"> Тэкст статаў <input type = "checkbox" checked = "true" id = "stattext" onchange = "stattextchg()"> </p>
 				<p class = "help" id = "stattextsize"> Памер тэксту статаў: <input type = "range" min = "10" max = "40" value = "15" id = "razmtext" oninput = "razmtext()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
 				<p class = "help"> Вышыня ячэек статаў: <input type = "range" min = "10" max = "40" value = "20" id = "razmbary" oninput = "razmbary()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
-				<p class = "help"> Шырыня ячэек статаў: <input type = "range" min = "100" max = "600" value = "200" id = "razmbarx" oninput = "razmbarx()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+				<p class = "help"> Шырыня ячэек статаў: <input type = "range" min = "100" max = "450" value = "200" id = "razmbarx" oninput = "razmbarx()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
 			</div>
 		</div>
 	</div>

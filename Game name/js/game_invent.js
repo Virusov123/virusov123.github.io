@@ -187,12 +187,16 @@ function invent()
 	if (opinv)
 	{
 		opinv = 0;
+		var pers = document.getElementById("pole1");
+		pers.style.display = "block";
 		var cord = document.getElementById("inf");
 		cord.style.display = 'none';
 		return 0;
 	}
 	srtinv();
 	opinv = 1;
+	var pers = document.getElementById("pole1");
+	pers.style.display = "none";
 	var cord = document.getElementById("inf");
 	cord.style.display = 'block';
 	return 0;

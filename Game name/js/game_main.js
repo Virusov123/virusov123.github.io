@@ -11,6 +11,7 @@ function next_level()//Переход на следующий уровень
 }
 function start()//стартовая функция
 {
+	
 	for (startlaunch = 0; startlaunch < maxwidth; startlaunch++)
 	{
 		pole[startlaunch] = [];
@@ -65,3 +66,19 @@ function draw()//прорисовка хода
 	}
 	statout();
 }
+let coord = 2970;
+setInterval(
+  () => {
+    if (coord == 2970)
+	{
+		drawpers(coord);
+		coord += 60;
+	}
+	else
+	{
+		drawpers(coord);
+		coord -= 60;
+	}
+  },
+  700
+);

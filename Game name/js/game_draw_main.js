@@ -143,14 +143,6 @@ function drawmain()
 			gr.addColorStop(1,"black");
 			ctx.fillStyle=gr;
 			ctx.fillRect(0,0,7000,7000);
-			if (!lev)
-			{
-				ctx.drawImage(perspfg, 3000, 3000, 1000, 1000);
-			}
-			else
-			{
-				ctx.drawImage(perslfg, 3000, 3000, 1000, 1000);
-			}
 		}
 		else
 		{
@@ -162,13 +154,37 @@ function drawmain()
 			gr.addColorStop(1,"black");
 			ctx.fillStyle=gr;
 			ctx.fillRect(0,0,7000,7000);
-			if (!lev)
+			drawpers(3000);
+		}
+}
+function drawpers(coord)
+{
+	if (light > 0)
+	{
+		var canvas1 = document.getElementById("pole1");
+		var ctx1 = canvas1.getContext('2d');
+		ctx1.clearRect(0,0,7000,7000);
+		if (!lev)
+		{
+			ctx1.drawImage(perspfg, 3000, coord, 1000, 1000);
+		}
+		else
+		{
+			ctx1.drawImage(perslfg, 3000, coord, 1000, 1000);
+		}
+	}
+	else
+	{
+		var canvas1 = document.getElementById("pole1");
+		var ctx1 = canvas1.getContext('2d');
+		ctx1.clearRect(0,0,7000,7000);
+		if (!lev)
 			{
-				ctx.drawImage(perspfn, 3000, 3000, 1000, 1000);
+				ctx1.drawImage(perspfn, 3000, 3000, 1000, 1000);
 			}
 			else
 			{
-				ctx.drawImage(perslfn, 3000, 3000, 1000, 1000);
+				ctx1.drawImage(perslfn, 3000, 3000, 1000, 1000);
 			}
-		}
+	}
 }

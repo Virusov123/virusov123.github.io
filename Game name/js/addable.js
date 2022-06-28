@@ -50,11 +50,16 @@ function razmok()
 	let pole = document.getElementById("pole");
 	pole.style.width = inp.value+"px";
 	pole.style.height = inp.value+"px";
+	let pole1 = document.getElementById("pole1");
+	pole1.style.width = inp.value+"px";
+	pole1.style.height = inp.value+"px";
+	let polya = document.getElementById("polya");
+	polya.style.width = inp.value+"px";
+	polya.style.height = inp.value+"px";
 }
 //document.getElementsByClassName('mystyle')[0].style.margin = "50px";
 function razmtext()
 {
-	console.log("5");
 	let inp = document.getElementById("razmtext");
 	let textt = document.getElementById('hp');
 	textt.style.fontSize = inp.value + "px";
@@ -74,7 +79,6 @@ function razmtext()
 	textt.style.fontSize = inp.value + "px";
 	textt = document.getElementById('coords');
 	textt.style.fontSize = inp.value + "px";
-	console.log("5");
 }
 //https://html5css.ru/howto/howto_js_draggable.php
 //перетаскивание окошка

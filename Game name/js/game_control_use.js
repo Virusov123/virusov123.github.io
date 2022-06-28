@@ -114,4 +114,13 @@ function esc()
 		io1.style.display = "none";
 		return 0;
 	}
+	if (opcontmenu != 0)
+		opcontmenu = 0;
+	else
+		if (opinv != 0)
+		{
+			opinv = 0;
+			var pers = document.getElementById("pole1");
+			pers.style.display = "block";
+		}
 }

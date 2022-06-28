@@ -20,7 +20,7 @@ h1
 }
 .stats
 {
-	width: 650px;
+	width: 400px;
 	/*position: absolute;
 	left:700px;
 	top:0px;*/
@@ -34,15 +34,28 @@ h1
   	display:flex;
 	justify-content: center;
 }
-
-.polee
+.polya
 {
+	width: 600px;
+	/*position: absolute;
+	left:700px;
+	top:0px;*/
+}
+.polee
+{	
 	width: 600px;
 	height: 600px;
 	background-color: #464646;
 	/*position: absolute;
 	left:5%;
 	top:5%;*/
+}
+.polee1
+{
+	position: absolute;
+	width: 600px;
+	height: 600px;
+    background-color: transparent;
 }
 .minimap
 {

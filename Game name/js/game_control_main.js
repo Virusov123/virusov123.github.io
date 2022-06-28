@@ -156,6 +156,8 @@ function down()
 //Лево
 function left()
 {
+	lev = 1;
+	drawpers(coord);
 	if (opcontmenu)
 	{
 		if (inv[x_inv][y_inv] != 3 && inv[x_inv][y_inv] != 6)
@@ -202,12 +204,13 @@ function left()
 		plposx--;
 		next_hod();
 	}
-	lev = 1;
 	return 0;
 }
 //Право
 function right()
 {
+	lev = 0;
+	drawpers(coord);
 	if (opcontmenu)
 	{
 		if (inv[x_inv][y_inv] != 3 && inv[x_inv][y_inv] != 6)
@@ -254,6 +257,5 @@ function right()
 		plposx++;
 		next_hod();
 	}
-	lev = 0;
 	return 0;
 }
