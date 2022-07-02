@@ -88,24 +88,7 @@ function up()
 	}
 	if (mobs[plposx][plposy-1][0] != 0)
 	{
-		mobs[plposx][plposy-1][2] -= dam;
-		if (mobs[plposx][plposy-1][2] <=0)
-		{
-			if (mobs[plposx][plposy-1][0] == 3)
-				pryvi = 0;
-			mobs[plposx][plposy-1][0] = 0;
-			kills++;
-		}
-		else
-		{
-			mobs[plposx][plposy][0] = mobs[plposx][plposy-1][0];
-			mobs[plposx][plposy][1] = 1;
-			mobs[plposx][plposy][2] = mobs[plposx][plposy-1][2];
-			mobs[plposx][plposy-1][0] = 0;
-			mobs[plposx][plposy-1][2] = 0;
-			fd--;
-			wat--;
-		}
+		return 0;
 	}
 	if (pole[plposx][plposy-1] != 1 && pole[plposx][plposy-1] != -2 && pole[plposx][plposy-1] != -5)
 	{
@@ -127,24 +110,7 @@ function down()
 	}
 	if (mobs[plposx][plposy+1][0] != 0)
 	{
-		mobs[plposx][plposy+1][2] -= dam;
-		if (mobs[plposx][plposy+1][2] <=0)
-		{
-			if (mobs[plposx][plposy+1][0] == 3)
-				pryvi = 0;
-			mobs[plposx][plposy+1][0] = 0;
-			kills++;
-		}
-		else
-		{
-			mobs[plposx][plposy][0] = mobs[plposx][plposy+1][0];
-			mobs[plposx][plposy][1] = 1;
-			mobs[plposx][plposy][2] = mobs[plposx][plposy+1][2];
-			mobs[plposx][plposy+1][0] = 0;
-			mobs[plposx][plposy+1][2] = 0;
-			fd--;
-			wat--;
-		}
+		return 0;
 	}
 	if (pole[plposx][plposy+1] != 1 && pole[plposx][plposy+1] > -1)
 	{
@@ -180,24 +146,7 @@ function left()
 	}
 	if (mobs[plposx-1][plposy][0] != 0)
 	{
-		mobs[plposx-1][plposy][2] -= dam;
-		if (mobs[plposx-1][plposy][2] <=0)
-		{
-			if (mobs[plposx-1][plposy][0] == 3)
-				pryvi = 0;
-			mobs[plposx-1][plposy][0] = 0;
-			kills++;
-		}
-		else
-		{
-			mobs[plposx][plposy][0] = mobs[plposx][plposy+1][0];
-			mobs[plposx][plposy][1] = 1;
-			mobs[plposx][plposy][2] = mobs[plposx-1][plposy][2];
-			mobs[plposx-1][plposy][0] = 0;
-			mobs[plposx-1][plposy][2] = 0;
-			fd--;
-			wat--;
-		}
+		return 0;
 	}
 	if (pole[plposx-1][plposy] != 1 && pole[plposx-1][plposy] > -1)
 	{
@@ -233,24 +182,7 @@ function right()
 	}
 	if (mobs[plposx+1][plposy][0] != 0)
 	{
-		mobs[plposx+1][plposy][2] -= dam;
-		if (mobs[plposx+1][plposy][2] <=0)
-		{
-			if (mobs[plposx+1][plposy][0] == 3)
-				pryvi = 0;
-			mobs[plposx+1][plposy][0] = 0;
-			kills++;
-		}
-		else
-		{
-			mobs[plposx][plposy][0] = mobs[plposx][plposy+1][0];
-			mobs[plposx][plposy][1] = 1;
-			mobs[plposx][plposy][2] = mobs[plposx+1][plposy][2];
-			mobs[plposx+1][plposy][0] = 0;
-			mobs[plposx+1][plposy][2] = 0;
-			fd--;
-			wat--;
-		}
+		return 0;
 	}
 	if (pole[plposx+1][plposy] != 1 && pole[plposx+1][plposy] > -1)
 	{

@@ -1,4 +1,4 @@
-function mobhod()
+function mobhod()// обработка хода
 {
 	let inf = document.getElementById("inf");
 	inf.innerHTML = "";
@@ -106,10 +106,10 @@ function mobhod()
 	for (let mbx = 0; mbx < maxwidth; mbx++)
 		for (let mby = 0; mby < maxwidth; mby++)
 			mobs[mbx][mby][1] = 0;
-		if (inf.innerHTML == "")
-			inf.style.display = "none";
+	if (inf.innerHTML == "")
+		inf.style.display = "none";
 }
-function mbrangedam(mbx, mby, plposx, plposy)
+function mbrangedam(mbx, mby, plposx, plposy)//радиус дамага моба
 {
 	switch (mobs[mbx][mby][0])
 	{
@@ -131,7 +131,7 @@ function mbrangedam(mbx, mby, plposx, plposy)
 		}
 	}
 }
-function mbdam(mobb)
+function mbdam(mobb)//дамаг моба
 {
 	switch (mobb)
 	{
@@ -153,7 +153,7 @@ function mbdam(mobb)
 		}
 	}
 }
-function mbname(mobb)
+function mbname(mobb)//имя моба
 {
 	switch (mobb)
 	{
@@ -175,7 +175,7 @@ function mbname(mobb)
 		}
 	}
 }
-function mbrangehod(mbx, mby, plposx, plposy)
+function mbrangehod(mbx, mby, plposx, plposy)//радиус агра
 {
 	switch (mobs[mbx][mby][0])
 	{
@@ -189,7 +189,7 @@ function mbrangehod(mbx, mby, plposx, plposy)
 		}
 		case 3:
 		{
-			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 5 && !GRI(2)) ;
+			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 6 && !GRI(2)) ;
 		}
 		default:
 		{
@@ -197,7 +197,7 @@ function mbrangehod(mbx, mby, plposx, plposy)
 		}
 	}
 }
-function mobhodd(xs, ys, xf, yf)
+function mobhodd(xs, ys, xf, yf)//перемещение моба
 {
 	mobs[xf][yf][0] = mobs[xs][ys][0];
 	mobs[xf][yf][2] = mobs[xs][ys][2];
@@ -209,7 +209,7 @@ function mobhodd(xs, ys, xf, yf)
 	else
 		mobs[xf][yf][3] = 0;
 }
-function hodvozm(x, y)
+function hodvozm(x, y)//возможность хода моба
 {
 	return (pole[x][y] >= 0 && pole[x][y] != 1 && mobs[x][y][0] == 0);
 }

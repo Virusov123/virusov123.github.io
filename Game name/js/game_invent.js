@@ -1,6 +1,6 @@
-function invchs()
+function invchs()//использование предмета
 {
-	switch(inv[x_inv][y_inv])
+	switch(inv[x_inv][y_inv][0])
 	{
 		case 0://noting
 		{
@@ -9,7 +9,7 @@ function invchs()
 		case 1://bread
 		{
 			fd+=600;
-			inv[x_inv][y_inv] = 0;
+			inv[x_inv][y_inv][0] = 0;
 			if (fd > fdmax)
 				fd = fdmax;
 			break;
@@ -17,7 +17,7 @@ function invchs()
 		case 2://torch
 		{
 			light=lightmax;
-			inv[x_inv][y_inv] = 0;
+			inv[x_inv][y_inv][0] = 0;
 			tryap = 0;
 			break;
 		}
@@ -26,19 +26,19 @@ function invchs()
 			wat+=350;
 			if (wat > watmax)
 				wat = watmax;
-			inv[x_inv][y_inv] = 0;
+			inv[x_inv][y_inv][0] = 0;
 			break;
 		}
 		case 4: //tryapka
 		{
 			tryap = 1;
-			inv[x_inv][y_inv] = 0;
+			inv[x_inv][y_inv][0] = 0;
 			break;
 		}
 		case 5: //iot
 		{
 			superreg += 10;
-			inv[x_inv][y_inv] = 0;
+			inv[x_inv][y_inv][0] = 0;
 			break;
 		}
 		case 6: //krest
@@ -86,9 +86,9 @@ function invchs()
 	srtinv();
 	srtinv();
 }
-function invinf()
+function invinf()//вывод информации о предмете
 {
-	switch(inv[x_inv][y_inv])
+	switch(inv[x_inv][y_inv][0])
 	{
 		case 0://noting
 		{
@@ -137,36 +137,36 @@ function invinf()
 		}
 		default:
 		{
-			inv[x_inv][y_inv] = 0;
+			inv[x_inv][y_inv][0] = 0;
 			srtinv();
 			break;
 		}
 	}
 }
-function srtinv()
+function srtinv()//сортировка инвентаря
 {
 	for (let j = 0; j < 7; j++)
 		for (let i = 0; i < 7; i++)
 		{
 			if (i == 5 && j == 6)
 				break;
-			if (inv[i][j] == 0)
+			if (inv[i][j][0] == 0)
 			{
 				if (i < 6)
 				{
-					inv[i][j] = inv[i+1][j];
-					inv[i+1][j] = 0;
+					inv[i][j][0] = inv[i+1][j][0];
+					inv[i+1][j][0] = 0;
 				}
 				else
 				{
-					inv[i][j] = inv[0][j+1];
-					inv[0][j+1] = 0;
+					inv[i][j][0] = inv[0][j+1][0];
+					inv[0][j+1][0] = 0;
 				}
 			}
 			
 		}
 }
-function geteltoinv(item)
+function geteltoinv(item)//добавление предмета в инвентарь
 {
 	add = 0;
 	for (let j = 0; j < 7; j++)
@@ -174,15 +174,15 @@ function geteltoinv(item)
 		if (add)
 			break;
 		for (let i = 0; i < 7; i++)
-			if (inv[i][j] == 0)
+			if (inv[i][j][0] == 0)
 			{
-				inv[i][j] = item;
+				inv[i][j][0] = item;
 				add++;
 				break;
 			}
 	}
 }
-function invent()
+function invent()//открытие/закрытие инвентаря
 {
 	if (opinv)
 	{

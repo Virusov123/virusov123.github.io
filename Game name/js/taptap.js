@@ -68,41 +68,18 @@ function tap(e)
 		draw();
 		return 0;
 	}
-	let pathtap = find_path(plposx, plposy, ttt[0], ttt[1]);
-	if (pathtap.length == 1)
+	if (mobs[ttt[0]][ttt[1]][0] != 0)
 	{
-		use();
-		draw();
-		return 0;
-	}
-	if (pathtap[1][0] != plposx || pathtap[1][1] != plposy)
-	{
-		for (let i = 1; i < pathtap.length; i++)
+		mobs[ttt[0]][ttt[1]][2] -= dam;
+		if (mobs[ttt[0]][ttt[1]][2] <= 0)
 		{
-			if (mobs[pathtap[i][0]][pathtap[i][1]][0] != 0)
-			{
-				mobs[pathtap[i][0]][pathtap[i][1]][2] -= dam;
-				if (mobs[pathtap[i][0]][pathtap[i][1]][2] <=0)
-				{
-					if (mobs[pathtap[i][0]][pathtap[i][1]][0] == 3)
-						pryvi = 0;
-					mobs[pathtap[i][0]][pathtap[i][1]][0] = 0;
-					kills++;
-				}
-				else
-				{
-					mobs[plposx][plposy][0] = mobs[pathtap[i][0]][pathtap[i][1]][0];
-					mobs[plposx][plposy][1] = 1;
-					mobs[plposx][plposy][2] = mobs[pathtap[i][0]][pathtap[i][1]][2];
-					mobs[pathtap[i][0]][pathtap[i][1]][0] = 0;
-					mobs[pathtap[i][0]][pathtap[i][1]][2] = 0;
-					fd--;
-					wat--;
-				}
-			}
-			plposx = pathtap[i][0]; plposy = pathtap[i][1];
-			next_hod();
-			draw();
+			if (mobs[ttt[0]][ttt[1]][0] == 3)
+				pryvi = 0;
+			mobs[ttt[0]][ttt[1]][0] = 0;
+			kills++;
 		}
+		next_hod();
+		draw();
+		
 	}
 }

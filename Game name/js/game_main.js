@@ -66,18 +66,18 @@ function draw()//прорисовка хода
 	}
 	statout();
 }
-let coord = 2970;
-setInterval(
+let coord = 297*quality;
+setInterval(//Анимация перса
   () => {
-    if (coord == 2970)
+    if (coord == 297 || coord == 2970)
 	{
 		drawpers(coord);
-		coord += 60;
+		coord += 6*quality;
 	}
 	else
 	{
 		drawpers(coord);
-		coord -= 60;
+		coord -= 6*quality;
 	}
   },
   700

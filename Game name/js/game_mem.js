@@ -13,7 +13,9 @@ var watmax = 500; var wat = watmax;
 var bgbtlstmax = watmax*2; var bgbtlst = bgbtlstmax;
 for (invst = 0; invst < 7; invst++)
 {
-	inv[invst] = [0, 0, 0, 0, 0, 0, 0];
+	inv[invst] = [[0,0], [0,0], [0,0], [0,0], [0,0], [0,0], [0,0]];
 }
-inv[6][6] = 10;
+inv[6][6][0] = 10;
 var kolkl = 0;
+var quality = 10;
+var setop = 0;

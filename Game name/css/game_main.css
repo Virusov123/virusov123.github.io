@@ -189,6 +189,10 @@ span
 	font-size: 22px;
 	font-weight: normal;
 }
+.closed
+{
+	display: none;
+}
 .help2 
 {
 	font-size: 15px;

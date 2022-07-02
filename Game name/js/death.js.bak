@@ -43,5 +43,5 @@ function ttt()
 			break;
 		}
 	}
-	document.getElementById("score").innerHTML += "<br> Вы памёрлі на -" + reas[2] + " паверсе і забілі " + reas[3] + " монстраў.";
+	document.getElementById("score").innerHTML += "<br> Вы памёрлі на -" + reas[2] + " паверсе і забілі " + reas[3] + " мабоў.";
 }

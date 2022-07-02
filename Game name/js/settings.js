@@ -1,4 +1,4 @@
-function sett()
+function sett()//открытие настроек
 {
 	let io = document.getElementById("settdiv");
 	if (io.style.display == "block")
@@ -6,17 +6,10 @@ function sett()
 	else
 	{
 		io.style.display = "block";
-		let nekv = document.getElementById("kvadr1");
-		nekv.style.display = "none";
-		nekv = document.getElementById("kvadr2");
-		nekv.style.display = "none";
-		nekv = document.getElementById("kvadr");
-		nekv.style.display = "block";
-		nekv = document.getElementById("kvadrchs");
-		nekv.checked = "true";
 	}
+	razmoknchg();
 }
-function razmok()
+function razmok()//размер окна (квадрат)
 {
 	let inp = document.getElementById("razmok");
 	let pole = document.getElementById("pole");
@@ -30,7 +23,7 @@ function razmok()
 	polya.style.height = inp.value+"px";
 }
 //document.getElementsByClassName('mystyle')[0].style.margin = "50px";
-function razmtext()
+function razmtext()//размер текста
 {
 	let inp = document.getElementById("razmtext");
 	let textt = document.getElementById('hp');
@@ -52,7 +45,7 @@ function razmtext()
 	textt = document.getElementById('coords');
 	textt.style.fontSize = inp.value + "px";
 }
-function razmbary()
+function razmbary()//размер ячеек стат (высота)
 {
 	let inp = document.getElementById("razmbary");
 	let bar = document.getElementById('hpbar');
@@ -64,7 +57,7 @@ function razmbary()
 	bar = document.getElementById('ltbar');
 	bar.style.height = inp.value + "px";
 }
-function razmbarx()
+function razmbarx()//размер ячеек стат (ширина)
 {
 	let inp = document.getElementById("razmbarx");
 	let bar = document.getElementById('hpbar');
@@ -76,7 +69,7 @@ function razmbarx()
 	bar = document.getElementById('ltbar');
 	bar.style.width = inp.value + "px";
 }
-function razmoknchg()
+function razmoknchg()//галочка квадратного окна
 {
 	let chs = document.getElementById("kvadrchs");
 	if (chs.checked)
@@ -87,6 +80,7 @@ function razmoknchg()
 		nekv.style.display = "none";
 		nekv = document.getElementById("kvadr");
 		nekv.style.display = "block";
+		razmok();
 	}
 	else
 	{
@@ -96,9 +90,10 @@ function razmoknchg()
 		nekv.style.display = "block";
 		nekv = document.getElementById("kvadr");
 		nekv.style.display = "none";
+		razmokx(); razmoky();
 	}
 }
-function razmokx()
+function razmokx()//размер окна (ширина)
 {
 	let inp = document.getElementById("razmokx");
 	let pole = document.getElementById("pole");
@@ -108,7 +103,7 @@ function razmokx()
 	let polya = document.getElementById("polya");
 	polya.style.width = inp.value+"px";
 }
-function razmoky()
+function razmoky()//размер окна (высота)
 {
 	let inp = document.getElementById("razmoky");
 	let pole = document.getElementById("pole");
@@ -118,7 +113,7 @@ function razmoky()
 	let polya = document.getElementById("polya");
 	polya.style.height = inp.value+"px";
 }
-function stattextchg()
+function stattextchg()//вкл/выкл текст стат
 {
 	let chs = document.getElementById("stattext");
 	if (chs.checked)
@@ -133,4 +128,27 @@ function stattextchg()
 		nekv.style.display = "none";
 		statout();
 	}
+}
+function chqual()//качество
+{
+	let chs = document.getElementById("qual");
+	if (chs.checked)
+	{
+		quality = 1;
+		coord = 297;
+		document.getElementById("pole").width = 700;
+		document.getElementById("pole").height = 700;
+		document.getElementById("pole1").width = 700;
+		document.getElementById("pole1").height = 700;
+	}
+	else
+	{
+		quality = 10;
+		coord = 2970
+		document.getElementById("pole").width = 7000;
+		document.getElementById("pole").height = 7000;
+		document.getElementById("pole1").width = 7000;
+		document.getElementById("pole1").height = 7000;
+	}
+	draw();
 }

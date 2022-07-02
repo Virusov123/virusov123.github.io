@@ -1,9 +1,9 @@
-function drawmain()
+function drawmain()//рисовка игрового поля
 {
 	var canvas = document.getElementById("pole");
 	var ctx = canvas.getContext('2d');
 	ctx.fillStyle = '#474747';
-	ctx.fillRect(0, 0, 7000, 7000);
+	ctx.fillRect(0, 0, 700*quality, 700*quality);
 	for (let i = plposx-3; i < plposx+4; i++)
 			{
 				for (let j = plposy-3; j < plposy+4; j++)
@@ -12,32 +12,32 @@ function drawmain()
 					{
 						case -1:
 						{
-							ctx.drawImage(stenat,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(stenat,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case -2:
 						{
-							ctx.drawImage(stena,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(stena,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 1:
 						{
-							ctx.drawImage(stena,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(stena,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 0:
 						{
-							ctx.drawImage(pol,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(pol,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 2:
 						{
-							ctx.drawImage(polgr,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(polgr,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case -5:
 						{
-							ctx.drawImage(stenagr,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(stenagr,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 					}
@@ -45,22 +45,22 @@ function drawmain()
 					{
 						case 1:
 						{
-							ctx.drawImage(kvsh,(i-plposx+3)*1000+300, (j-plposy+3)*1000+300, 500, 500);
+							ctx.drawImage(kvsh,(i-plposx+3)*100*quality+30*quality, (j-plposy+3)*100*quality+30*quality, 50*quality, 50*quality);
 							break;
 						}
 						case 2:
 						{
-							ctx.drawImage(lzh,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(lzh,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 3:
 						{
-							ctx.drawImage(sunduk,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(sunduk,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 4:
 						{
-							ctx.drawImage(lvn,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(lvn,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 					}
@@ -68,37 +68,37 @@ function drawmain()
 					{
 						case 1:
 						{
-							ctx.drawImage(bread,(i-plposx+3)*1000+300, (j-plposy+3)*1000+300, 500, 500);
+							ctx.drawImage(bread,(i-plposx+3)*100*quality+30*quality, (j-plposy+3)*100*quality+30*quality, 50*quality, 50*quality);
 							break;
 						}
 						case 2:
 						{
-							ctx.drawImage(torch,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(torch,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 3:
 						{
-							ctx.drawImage(btl,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(btl,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 4:
 						{
-							ctx.drawImage(trp,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(trp,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 5:
 						{
-							ctx.drawImage(iot,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(iot,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 6:
 						{
-							ctx.drawImage(krestik,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(krestik,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 7:
 						{
-							ctx.drawImage(mch,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(mch,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 					}
@@ -107,19 +107,19 @@ function drawmain()
 						case 1:
 						{
 							if (mobs[i][j][3])
-								ctx.drawImage(mob1r,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+								ctx.drawImage(mob1r,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							else
-								ctx.drawImage(mob1l,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+								ctx.drawImage(mob1l,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 2:
 						{
-							ctx.drawImage(vadzan,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(vadzan,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 						case 3:
 						{
-							ctx.drawImage(pryv,(i-plposx+3)*1000, (j-plposy+3)*1000, 1000, 1000);
+							ctx.drawImage(pryv,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
 					}
@@ -130,61 +130,61 @@ function drawmain()
 		if (light > 0)
 		{
 			ctx.fillStyle = "rgba(255, 221, 39, 0.33)";
-			ctx.fillRect(0,0,7000,7000);
+			ctx.fillRect(0,0,700*quality,700*quality);
 			if (tryap == 0)
 			{
-				var gr = ctx.createRadialGradient(3500, 3500, 800, 3500, 3500, 3100);
+				var gr = ctx.createRadialGradient(350*quality, 350*quality, 80*quality, 350*quality, 350*quality, 310*quality);
 			}
 			else
 			{
-				var gr = ctx.createRadialGradient(3500, 3500, 1300, 3500, 3500, 4100);
+				var gr = ctx.createRadialGradient(350*quality, 350*quality, 130*quality, 350*quality, 350*quality, 410*quality);
 			}	
 			gr.addColorStop(0,"transparent");
 			gr.addColorStop(1,"black");
 			ctx.fillStyle=gr;
-			ctx.fillRect(0,0,7000,7000);
+			ctx.fillRect(0,0,700*quality,700*quality);
 		}
 		else
 		{
 			
 			ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
-			ctx.fillRect(0,0,7000,7000);
-			var gr = ctx.createRadialGradient(3500, 3500, 100, 3500, 3500, 1500);
+			ctx.fillRect(0,0,700*quality,700*quality);
+			var gr = ctx.createRadialGradient(350*quality, 350*quality, 10*quality, 350*quality, 350*quality, 150*quality);
 			gr.addColorStop(0,"transparent");
 			gr.addColorStop(1,"black");
 			ctx.fillStyle=gr;
-			ctx.fillRect(0,0,7000,7000);
-			drawpers(3000);
+			ctx.fillRect(0,0,700*quality,700*quality);
+			drawpers(300*quality);
 		}
 }
-function drawpers(coord)
+function drawpers(coord)//рисовка персонажа
 {
 	if (light > 0)
 	{
 		var canvas1 = document.getElementById("pole1");
 		var ctx1 = canvas1.getContext('2d');
-		ctx1.clearRect(0,0,7000,7000);
+		ctx1.clearRect(0,0,700*quality,700*quality);
 		if (!lev)
 		{
-			ctx1.drawImage(perspfg, 3000, coord, 1000, 1000);
+			ctx1.drawImage(perspfg, 300*quality, coord, 100*quality, 100*quality);
 		}
 		else
 		{
-			ctx1.drawImage(perslfg, 3000, coord, 1000, 1000);
+			ctx1.drawImage(perslfg, 300*quality, coord, 100*quality, 100*quality);
 		}
 	}
 	else
 	{
 		var canvas1 = document.getElementById("pole1");
 		var ctx1 = canvas1.getContext('2d');
-		ctx1.clearRect(0,0,7000,7000);
+		ctx1.clearRect(0,0,700*quality,700*quality);
 		if (!lev)
 			{
-				ctx1.drawImage(perspfn, 3000, 3000, 1000, 1000);
+				ctx1.drawImage(perspfn, 300*quality, 300*quality, 100*quality, 100*quality);
 			}
 			else
 			{
-				ctx1.drawImage(perslfn, 3000, 3000, 1000, 1000);
+				ctx1.drawImage(perslfn, 300*quality, 300*quality, 100*quality, 100*quality);
 			}
 	}
 }

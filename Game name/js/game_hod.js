@@ -56,4 +56,6 @@ function next_hod()
 			wat--;
 		}
 	mobhod();
+	if (hp <= 0)
+		window.location.href = 'death.html?&errorhp&'+lvl+'&'+kills;
 }
