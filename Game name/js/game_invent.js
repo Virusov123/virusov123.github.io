@@ -32,7 +32,9 @@ function invchs()//использование предмета
 		case 4: //tryapka
 		{
 			tryap = 1;
-			inv[x_inv][y_inv][0] = 0;
+			inv[x_inv][y_inv][1]--;
+			if (inv[x_inv][y_inv][1] == 0)
+				inv[x_inv][y_inv][0] = 0;
 			break;
 		}
 		case 5: //iot
@@ -43,28 +45,31 @@ function invchs()//использование предмета
 		}
 		case 6: //krest
 		{
-			if (hola)
+			if (inv[x_inv][y_inv][2])
 			{
 				if (!krest)
 					krest = 20;
 				else
 					krest = 0;
-				hola = 0;
+				inv[x_inv][y_inv][2] = 0;
 			}
 			break;
 		}
 		case 7: //mech
 		{
-			if (!mech)
-			{
-				mech = 1;
-				dam = 20;
-			}
+			changeweap(7);
+			break;
+		}
+		case 8: //arr
+		{
+			break;
+		}
+		case 9: //bow
+		{
+			if (activeweap != 9)
+				changeweap(9);
 			else
-			{
-				mech = 0;
-				dam = 10;
-			}
+				changeweap(0);
 			break;
 		}
 		case 10: //big_bootle
@@ -127,7 +132,17 @@ function invinf()//вывод информации о предмете
 		}
 		case 7://mech
 		{
-			document.getElementById("inf").innerHTML = "Меч павялічвае пашкоджанні мобам.";
+			document.getElementById("inf").innerHTML = "Меч павялічвае пашкоджанні мобам. Наносіць 20 адзінак урону";
+			break;
+		}
+		case 8://arrow
+		{
+			document.getElementById("inf").innerHTML = "Страла. Выкарыстоўваецца з дапамогай лука.";
+			break;
+		}
+		case 9://bow
+		{
+			document.getElementById("inf").innerHTML = "Лук павялічвае пашкоджанні мобам. Наносіць 12 адзінак урону. Можа страляць туды, куды вы бачыце.";
 			break;
 		}
 		case 10://big_bottle
@@ -155,12 +170,20 @@ function srtinv()//сортировка инвентаря
 				if (i < 6)
 				{
 					inv[i][j][0] = inv[i+1][j][0];
+					inv[i][j][1] = inv[i+1][j][1];
+					inv[i][j][2] = inv[i+1][j][2];
 					inv[i+1][j][0] = 0;
+					inv[i+1][j][1] = 0;
+					inv[i+1][j][2] = 0;
 				}
 				else
 				{
 					inv[i][j][0] = inv[0][j+1][0];
+					inv[i][j][1] = inv[0][j+1][1];
+					inv[i][j][2] = inv[0][j+1][2];
 					inv[0][j+1][0] = 0;
+					inv[0][j+1][1] = 0;
+					inv[0][j+1][2] = 0;
 				}
 			}
 			
@@ -168,18 +191,52 @@ function srtinv()//сортировка инвентаря
 }
 function geteltoinv(item)//добавление предмета в инвентарь
 {
-	add = 0;
-	for (let j = 0; j < 7; j++)
+	let add = 0;
+	if (item != 4 && item != 8)
 	{
-		if (add)
-			break;
-		for (let i = 0; i < 7; i++)
-			if (inv[i][j][0] == 0)
-			{
-				inv[i][j][0] = item;
-				add++;
+		for (let j = 0; j < 7; j++)
+		{
+			if (add)
 				break;
+			for (let i = 0; i < 7; i++)
+				if (inv[i][j][0] == 0)
+				{
+					inv[i][j][0] = item;
+					add++;
+					break;
+				}
+		}
+	}
+	else
+	{
+		for (let j = 0; j < 7; j++)
+		{
+			if (add)
+				break;
+			for (let i = 0; i < 7; i++)
+				if (inv[i][j][0] == item)
+				{
+					inv[i][j][1]++;
+					add++;
+					break;
+				}
+		}
+		if (!add)
+		{
+			for (let j = 0; j < 7; j++)
+			{
+				if (add)
+					break;
+				for (let i = 0; i < 7; i++)
+					if (inv[i][j][0] == 0)
+					{
+						inv[i][j][0] = item;
+						inv[i][j][1] = 1;
+						add++;
+						break;
+					}
 			}
+		}
 	}
 }
 function invent()//открытие/закрытие инвентаря

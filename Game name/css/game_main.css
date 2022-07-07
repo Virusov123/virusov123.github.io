@@ -88,7 +88,7 @@ span
 	top:25%;
 	width: 35%;
 	height: 40%;
-	z-index: 2;
+	z-index: 1000000;
 	display: block;
 }
 .loadingfon
@@ -96,7 +96,7 @@ span
 	position: absolute;
 	left:0px;
 	top:0px;
-	z-index: 1;
+	z-index: 100000;
 	display: block;
 }
 .cords
@@ -154,6 +154,7 @@ span
 	top: 50px;
 	left: 10px;
 	width: 30px;
+	z-index:1000;
 }
 .infodiv
 {
@@ -241,4 +242,10 @@ span
 {
 	display: flex;
 	justify-content: space-around;
+}
+.weap
+{
+	width: 70px;
+	height: 70px;
+	background-color: #464646;
 }

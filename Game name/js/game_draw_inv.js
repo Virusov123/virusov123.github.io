@@ -41,6 +41,13 @@ function drawinv()//рисовка инвентаря
 				{
 					ctx.strokeRect(i*100*quality, j*100*quality, 100*quality, 100*quality);
 					ctx.drawImage(trp,i*100*quality+4*quality, j*100*quality+4*quality, 92*quality, 92*quality);
+					ctx.fillStyle = "#FFFFFF";
+					ctx.font = 20*quality + "px 'Didact Gothic', sans-serif";
+					if (j != 0)
+						ctx.fillText(inv[i][j][1], i*100*quality+10*quality, j*200*quality-5*quality);
+					else
+						ctx.fillText(inv[i][j][1], i*100*quality+10*quality, 95*quality);
+					break;
 					break;
 				}
 				case 5:
@@ -53,16 +60,33 @@ function drawinv()//рисовка инвентаря
 				{
 					xkr = i; ykr = j;
 					ctx.strokeRect(i*100*quality, j*100*quality, 100*quality, 100*quality);
-					if (hola)
+					if (inv[i][j][2] == 1)
 						ctx.drawImage(hol,i*100*quality+4*quality, j*100*quality+4*quality, 92*quality, 92*quality);
 					ctx.drawImage(krestik,i*100*quality+4*quality, j*100*quality+4*quality, 92*quality, 92*quality);
 					break;
 				}
 				case 7:
 				{
-					xmch = i; ymch = j;
 					ctx.strokeRect(i*100*quality, j*100*quality, 100*quality, 100*quality);
 					ctx.drawImage(mch,i*100*quality+4*quality, j*100*quality+4*quality, 92*quality, 92*quality);
+					break;
+				}
+				case 8:
+				{
+					ctx.strokeRect(i*100*quality, j*100*quality, 100*quality, 100*quality);
+					ctx.drawImage(arr,i*100*quality+4*quality, j*100*quality+4*quality, 92*quality, 92*quality);
+					ctx.fillStyle = "#FFFFFF";
+					ctx.font = 20*quality + "px 'Didact Gothic', sans-serif";
+					if (j != 0)
+						ctx.fillText(inv[i][j][1], i*100*quality+10*quality, j*200*quality-5*quality);
+					else
+						ctx.fillText(inv[i][j][1], i*100*quality+10*quality, 95*quality);
+					break;
+				}
+				case 9:
+				{
+					ctx.strokeRect(i*100*quality, j*100*quality, 100*quality, 100*quality);
+					ctx.drawImage(bow,i*100*quality+4*quality, j*100*quality+4*quality, 92*quality, 92*quality);
 					break;
 				}
 				case 10:
@@ -78,11 +102,6 @@ function drawinv()//рисовка инвентаря
 	{
 		ctx.strokeStyle = "yellow";
 		ctx.strokeRect(xkr*100*quality, ykr*100*quality, 100*quality, 100*quality);
-	}
-	if (mech)
-	{
-		ctx.strokeStyle = "green";
-		ctx.strokeRect(xmch*100*quality, ymch*100*quality, 100*quality, 100*quality);
 	}
 	ctx.strokeStyle = "white";
 	ctx.strokeRect(x_inv*100*quality, y_inv*100*quality, 100*quality, 100*quality);
@@ -263,6 +282,54 @@ function drawinv()//рисовка инвентаря
 				ctx.font = 22*quality + "px 'Didact Gothic', sans-serif";
 				ctx.textAlign = "center";
 				ctx.fillText("Экіпіраваць", xncont+125*quality, yvcont+85*quality);
+				ctx.font = 30*quality + "px 'Didact Gothic', sans-serif";
+				ctx.fillText("Выкінуць", xncont+285*quality, yvcont+85*quality);
+				ctx.strokeStyle = "slategray";
+				ctx.strokeRect(xncont+50*quality, yvcont+50*quality, 150*quality, 50*quality);
+				but1 = [xncont+50*quality, yvcont+50*quality, xncont+200*quality, yvcont+100*quality]; 
+				ctx.strokeRect(xncont+210*quality, yvcont+50*quality, 150*quality, 50*quality);
+				but2 = [xncont+210*quality, yvcont+50*quality, xncont+360*quality, yvcont+100*quality];
+				but3 = [100*quality, 100*quality, 100*quality, 100*quality];
+				ctx.strokeStyle = "white";
+				if (!cont)
+					ctx.strokeRect(xncont+50*quality, yvcont+50*quality, 150*quality, 50*quality);
+				else
+					ctx.strokeRect(xncont+210*quality, yvcont+50*quality, 150*quality, 50*quality);
+				break;
+			}
+			case 8://arrcont
+			{
+				ctx.fillRect(xncont+50*quality, yvcont+50*quality, 150*quality, 50*quality);
+				ctx.fillRect(xncont+210*quality, yvcont+50*quality, 150*quality, 50*quality);
+				ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+				ctx.font = 30*quality + "px 'Didact Gothic', sans-serif";
+				ctx.textAlign = "center";
+				ctx.fillText("Адмена", xncont+125*quality, yvcont+85*quality);
+				ctx.fillText("Выкінуць", xncont+285*quality, yvcont+85*quality);
+				ctx.strokeStyle = "slategray";
+				ctx.strokeRect(xncont+50*quality, yvcont+50*quality, 150*quality, 50*quality);
+				but1 = [xncont+50*quality, yvcont+50*quality, xncont+200*quality, yvcont+100*quality]; 
+				ctx.strokeRect(xncont+210*quality, yvcont+50*quality, 150*quality, 50*quality);
+				but2 = [xncont+210*quality, yvcont+50*quality, xncont+360*quality, yvcont+100*quality];
+				but3 = [100*quality, 100*quality, 100*quality, 100*quality];
+				ctx.strokeStyle = "white";
+				if (!cont)
+					ctx.strokeRect(xncont+50*quality, yvcont+50*quality, 150*quality, 50*quality);
+				else
+					ctx.strokeRect(xncont+210*quality, yvcont+50*quality, 150*quality, 50*quality);
+				break;
+			}
+			case 9://bowcont
+			{
+				ctx.fillRect(xncont+50*quality, yvcont+50*quality, 150*quality, 50*quality);
+				ctx.fillRect(xncont+210*quality, yvcont+50*quality, 150*quality, 50*quality);
+				ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+				ctx.font = 22*quality + "px 'Didact Gothic', sans-serif";
+				ctx.textAlign = "center";
+				if (activeweap != 9)
+					ctx.fillText("Экіпіраваць", xncont+125*quality, yvcont+85*quality);
+				else
+					ctx.fillText("Разэкіпіраваць", xncont+125*quality, yvcont+85*quality);
 				ctx.font = 30*quality + "px 'Didact Gothic', sans-serif";
 				ctx.fillText("Выкінуць", xncont+285*quality, yvcont+85*quality);
 				ctx.strokeStyle = "slategray";

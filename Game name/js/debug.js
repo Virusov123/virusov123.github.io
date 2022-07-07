@@ -74,6 +74,14 @@ function debug()//debug режим (миникарта и координаты)
 					break;
 				}
 			}
+			switch(items[i][j])
+			{
+				case 8:
+				{
+					ctx.drawImage(lvn,i*100, j*100, 100, 100);
+					break;
+				}
+			}
 			switch(mobs[i][j][0])
 			{
 				case 1:

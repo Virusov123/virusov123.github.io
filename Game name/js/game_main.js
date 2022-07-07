@@ -3,6 +3,7 @@ function next_level()//Переход на следующий уровень
 	lvl++;
 	maxwidth+=6;
 	maxheight+=6;
+	maxarr+=2;
 	pole = [];
 	pole1 = [];
 	items = [];
@@ -19,7 +20,7 @@ function start()//стартовая функция
 		items[startlaunch] = [];
 		mobs[startlaunch] = [];
 		for (startlaunch1 = 0; startlaunch1 < maxheight; startlaunch1++)
-			mobs[startlaunch][startlaunch1] = [0,0];
+			mobs[startlaunch][startlaunch1] = [0, 0];
 	}
 	let minip = document.getElementById('poleprov');
 	minip.width = maxwidth*100;
@@ -51,6 +52,20 @@ function start()//стартовая функция
 	let ld = document.getElementById('load');
 	ldf.style.display = 'none';
 	ld.style.display = 'none';
+	let canvas = document.getElementById('weap');
+	var ctx = canvas.getContext('2d');
+	ctx.lineWidth = 40;
+	ctx.strokeStyle = "slategray";
+	ctx.strokeRect(0, 0, 500, 500);
+}
+function near(x, y, range)
+{
+	if (Number.isInteger(range))
+		return (Math.abs(plposx - x) <= range && Math.abs(plposy - y) <= range);
+	else
+	{
+		return (Math.abs(plposx - x) <= Math.round(range) && Math.abs(plposy - y) <= Math.round(range) && Math.abs(plposy - y) != Math.abs(plposx - x));
+	}
 }
 function draw()//прорисовка хода
 {

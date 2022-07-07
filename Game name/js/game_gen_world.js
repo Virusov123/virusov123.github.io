@@ -105,7 +105,7 @@ function genmob()//генерация мобов
 			if (!GRI(2))
 			{
 				mobs[grx][gry][0] = 1;
-				mobs[grx][gry][2] = 20;
+				mobs[grx][gry][2] = 25;
 				mobs[grx][gry][3] = 0;
 				klvmb1++;
 			}
@@ -144,7 +144,7 @@ function genluzh()//генерация луж
 			if (v1)
 			{
 				mobs[grx][gry][0] = 2;
-				mobs[grx][gry][2] = 8;
+				mobs[grx][gry][2] = 40;
 				vadz++;
 			}
 			klvlzh++;
@@ -172,6 +172,26 @@ function genrand(x, y)//генерация полости
 		genrand(x, y+1);
 	if (!t4 && pole[x][y-1] != 0 && pole[x+1][y] != 2 && pole[x][y-1] != -2)
 		genrand(x, y-1);
+}
+function genarr()//генерация кувшинов
+{
+	let klvarr = 0;
+	klvrest = 0;
+	while(klvarr <= maxarr)
+	{
+		let grx = GRI(maxwidth-1);
+		let gry = GRI(maxheight-1);
+		if (pole[grx][gry] == 0 || pole[grx][gry] == 2)
+		{
+			items[grx][gry] = 8;
+			klvarr++;
+		}
+		if (klvrest > 10000)
+		{
+			break;
+		}
+		klvrest++;
+	}
 }
 function generate()//Основная генерация
 {
@@ -220,6 +240,7 @@ function generate()//Основная генерация
 	genluzh();
 	genlest();
 	genmob();
+	genarr();
 	//вызов debug режима
 	if (debugonn)
 		debug();

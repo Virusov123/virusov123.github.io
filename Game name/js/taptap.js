@@ -70,16 +70,45 @@ function tap(e)
 	}
 	if (mobs[ttt[0]][ttt[1]][0] != 0)
 	{
-		mobs[ttt[0]][ttt[1]][2] -= dam;
-		if (mobs[ttt[0]][ttt[1]][2] <= 0)
+		if (activeweap != 9 && near(ttt[0], ttt[1], 1))
 		{
-			if (mobs[ttt[0]][ttt[1]][0] == 3)
-				pryvi = 0;
-			mobs[ttt[0]][ttt[1]][0] = 0;
-			kills++;
+			if (activeweap == 0)
+				mobs[ttt[0]][ttt[1]][2] -= 7;
+			else
+				mobs[ttt[0]][ttt[1]][2] -= 20;
+			if (mobs[ttt[0]][ttt[1]][2] <= 0)
+			{
+				if (mobs[ttt[0]][ttt[1]][0] == 3)
+					pryvi = 0;
+				mobs[ttt[0]][ttt[1]][0] = 0;
+				kills++;
+			}
+			next_hod();
+			draw();
 		}
-		next_hod();
-		draw();
-		
+		else
+		{
+			if (activeweap == 9 && klvarr() > 0)
+			{
+				mobs[ttt[0]][ttt[1]][2] -= 12;
+				inv[xarr][yarr][1]--;
+				changeweap(9);
+				if (inv[xarr][yarr][1] == 0)
+				{
+					inv[xarr][yarr][0] = 0;
+					srtinv();
+					srtinv();
+				}
+				if (mobs[ttt[0]][ttt[1]][2] <= 0)
+				{
+					if (mobs[ttt[0]][ttt[1]][0] == 3)
+						pryvi = 0;
+					mobs[ttt[0]][ttt[1]][0] = 0;
+					kills++;
+				}
+				next_hod();
+				draw();
+			}
+		}
 	}
 }

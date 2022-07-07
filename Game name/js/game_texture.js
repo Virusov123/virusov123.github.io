@@ -48,7 +48,11 @@
 	var bgbtl = new Image;
 	bgbtl.src = "../img/predm/big_bottle.png";
 	var hol = new Image;
-	hol.src = "../img/hola.png";
+	hol.src = "../img/hola.png"
+	var arr = new Image;
+	arr.src = "../img/predm/arrow.png";
+	var bow = new Image;
+	bow.src = "../img/predm/bow.png";
 //
 //mobs
 	var mob1l = new Image;

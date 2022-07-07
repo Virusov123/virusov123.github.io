@@ -12,7 +12,7 @@ function use()
 			{
 				if ((inv[x_inv][y_inv][0] != 3 && inv[x_inv][y_inv][0] != 6) || cont == 2)
 				{
-					items[plposx][plposy][0] = inv[x_inv][y_inv][0];
+					items[plposx][plposy] = inv[x_inv][y_inv][0];
 					inv[x_inv][y_inv][0] = 0;
 					srtinv();
 					srtinv();
@@ -41,7 +41,13 @@ function use()
 								}
 						if (boti)
 						{
-							hola = 1;
+							for (let i = 0; i < 7; i++)
+								for (let j = 0; j < 6; j++)
+									if (inv[i][j][0] == 6)
+									{
+										inv[i][j][2] = 1;
+										break;
+									}
 						}
 					}
 				}
@@ -57,6 +63,15 @@ function use()
 			opcontmenu = 1;
 		return 0;
 	}
+	if (items[plposx][plposy] != 0)
+	{
+		geteltoinv(items[plposx][plposy]);
+		if (activeweap == 9)
+			changeweap(9);
+		items[plposx][plposy] = 0;
+		next_hod();
+		return 0;
+	}
 	if (pole1[plposx][plposy] == 4)
 	{
 		next_level();
@@ -66,8 +81,11 @@ function use()
 	}
 	if (pole1[plposx][plposy] == 1)
 	{
-		vyp = GRI(5)+1;
-		items[plposx][plposy] = vyp;
+		vyp = GRI(6)+1;
+		if (vyp != 6)
+			items[plposx][plposy] = vyp;
+		else
+			items[plposx][plposy] = 8;
 		pole1[plposx][plposy] = 0;
 		next_hod();
 		return 0;
@@ -80,16 +98,11 @@ function use()
 	}
 	if (pole1[plposx][plposy] == 3)
 	{
-		vyp = GRI(4)+4;
+		vyp = GRI(5)+4;
+		if (vyp == 8)
+			vyp = 9;
 		items[plposx][plposy] = vyp;
 		pole1[plposx][plposy] = 0;
-		next_hod();
-		return 0;
-	}
-	if (items[plposx][plposy] != 0)
-	{
-		geteltoinv(items[plposx][plposy]);
-		items[plposx][plposy] = 0;
 		next_hod();
 		return 0;
 	}

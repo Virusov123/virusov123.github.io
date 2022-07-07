@@ -20,6 +20,7 @@
 		<script src = "../js/addable.js"> </script>
 		<script src = "../js/settings.js"> </script>
 		<script src = "../js/taptap.js"> </script>
+		<script src = "../js/game_weap.js"> </script>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
@@ -44,6 +45,8 @@
 			<p id = 'bns' class = "bonus"> &nbps; </p>
 			<p id = 'inf' class = "inf"> &nbps; </p>
 			<p id = "coords" class = "cords">&nbsp; </p>
+			<p class = 'stat'> Зброя</p>
+			<canvas class = "weap" id = "weap" width = '500' height = '500' onclick = "tapweap(event)"></canvas>
 		</div>
 		<canvas id = "poleprov" class = "minimap" width = "3100" height = "3100"> </canvas>
 	</div>
@@ -60,7 +63,7 @@
 		<img class = "primkart" src = "../img/pol_steny/kuvshin.png">
 		<p class = "help"> Дастаць ежу, воду, факелы і г.д. можна з кувшыну. Для гэтага трэба стаць на кувшын і націснуць кнопку ўзаемадзеяння. Прадмет, які выпаў і ляжыць на зямлі можна пакласці сабе ў інвентар, націснуўшы гэтую кнопку яшчэ раз.</p>
 		<p class = "help"> Для спуску ніжэй трэба знайсці дзірку чорнага колеру. Для пераходу стаць на яе і націснуць E/Enter.</p>
-		<p class = "help"> Для нанясення ўрону монстру трэба націстуць мышкай на яго.</p>
+		<p class = "help"> Для нанясення ўрону монстру трэба націстуць мышкай на яго. Рука наносіць 7 адзінак урону.</p>
 		<p class = "help"> Пад час ўдару паказчыкі вады і ежы падаюць хутчэй.</p>
 		<p class = "help"> УВАГА! ГУЛЬНЯ НА СТАДЫІ РАСПРАЦОЎКІ. ТЭКТСТУРЫ НЕ ЗАВЕРШАНЫЯ. МОГУЦЬ ПРЫСУТНІЧАЦЬ БАГІ. КАЛІ ВЫ ЗНАЙШЛІ БАГ, ЗВЯРНІЦЕСЯ ДА АДНОГА З АЎТАРАЎ ПА СПАСЫЛЦЫ.</p>
 	</div>

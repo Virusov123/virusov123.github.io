@@ -101,6 +101,16 @@ function drawmain()//рисовка игрового поля
 							ctx.drawImage(mch,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
 							break;
 						}
+						case 8:
+						{
+							ctx.drawImage(arr,(i-plposx+3)*110*quality, (j-plposy+3)*110*quality, 70*quality, 70*quality);
+							break;
+						}
+						case 9:
+						{
+							ctx.drawImage(bow,(i-plposx+3)*100*quality, (j-plposy+3)*100*quality, 100*quality, 100*quality);
+							break;
+						}
 					}
 					switch(mobs[i][j][0])
 					{

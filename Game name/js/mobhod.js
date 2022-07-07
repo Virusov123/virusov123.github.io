@@ -8,7 +8,7 @@ function mobhod()// обработка хода
 			if (mobs[mbx][mby][0] != 0 && mobs[mbx][mby][1] == 0)
 			{
 				var pth = find_path(mbx, mby, plposx, plposy);
-				if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 3)
+				if (near(mbx, mby, 2))
 				{
 					inf.style.display = "block";
 					if (mobs[mbx][mby][0] == 3)
@@ -20,7 +20,7 @@ function mobhod()// обработка хода
 					else
 						inf.innerHTML += mbname(mobs[mbx][mby][0]) + ". Сіла = " + mbdam(mobs[mbx][mby][0]) + ". HP: " + mobs[mbx][mby][2] + ";<br>";
 				}
-				if (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 2.2)
+				if (near(mbx, mby, 2))
 				{
 					if (krest > 0)
 					{
@@ -107,7 +107,10 @@ function mobhod()// обработка хода
 		for (let mby = 0; mby < maxwidth; mby++)
 			mobs[mbx][mby][1] = 0;
 	if (inf.innerHTML == "")
+	{
 		inf.style.display = "none";
+		pryvi = 0;
+	}
 }
 function mbrangedam(mbx, mby, plposx, plposy)//радиус дамага моба
 {
@@ -115,15 +118,15 @@ function mbrangedam(mbx, mby, plposx, plposy)//радиус дамага моб�
 	{
 		case 1:
 		{
-			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 1.8);
+			return (near(mbx, mby, 1));
 		}
 		case 2:
 		{
-			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 1.1);
+			return (near(mbx, mby, 0.5));
 		}
 		case 3:
 		{
-			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 1.8);
+			return (near(mbx, mby, 1));
 		}
 		default:
 		{
@@ -181,7 +184,7 @@ function mbrangehod(mbx, mby, plposx, plposy)//радиус агра
 	{
 		case 1:
 		{
-			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 10);
+			return near(mbx, mby, 5);
 		}
 		case 2:
 		{
@@ -189,7 +192,7 @@ function mbrangehod(mbx, mby, plposx, plposy)//радиус агра
 		}
 		case 3:
 		{
-			return (Math.sqrt((mbx - plposx)*(mbx - plposx)+(mby - plposy)*(mby - plposy)) < 6 && !GRI(2)) ;
+			return (near(mbx, mby, 7) && !GRI(2)) ;
 		}
 		default:
 		{
