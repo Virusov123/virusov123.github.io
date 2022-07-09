@@ -1,37 +1,60 @@
-<html>
+<html lang="by">
 	<head>
 		<meta charset="utf-8">
-		<title>/*Game name*/</title>
+		<title>Жывальнае Святло</title>
 		<link rel="stylesheet" type="text/css" href="../css/game_main.css">
+		<script src = "../js/game_mem.js"> </script>
+		<script src = "../js/debug.js"> </script>
+		<script src = "../js/game_texture.js"> </script>
+		<script src = "../js/game_draw_main.js"> </script>
+		<script src = "../js/game_draw_inv.js"> </script>
+		<script src = "../js/game_gen_world.js"> </script>
 		<script src = "../js/game_main.js"> </script>
+		<script src = "../js/game_hod.js"> </script>
+		<script src = "../js/mobhod.js"> </script>
+		<script src = "../js/game_control_main.js"> </script>
+		<script src = "../js/game_control_use.js"> </script>
+		<script src = "../js/game_find_path.js"> </script>
+		<script src = "../js/game_stat.js"> </script>
+		<script src = "../js/game_invent.js"> </script>
+		<script src = "../js/addable.js"> </script>
+		<script src = "../js/settings.js"> </script>
+		<script src = "../js/taptap.js"> </script>
+		<script src = "../js/game_weap.js"> </script>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
 	</head>
 	<body onload = "start()" onkeydown = "handle(event)" onkeyup = "unh()">
 	<img class = "info" id = "info" src = "../img/info.png" onclick = "info()">
+	<img class = "sett" id = "sett" src = "../img/sett.png" onclick = "sett()">
 	<img class = "loading1" id = "load" src = "../img/loading.png">
 	<img class = "loadingfon" id = "loadf" src = "../img/loadingfon.png">
 	<div class = "osn">
-		<canvas id = "pole" class = "polee" width = "7000" height = "7000"> 
-		<p>Адсутнічае падтрымка canvas, калі ласка, зайдзіце праз іншы браузер</p></canvas>
+		<div class = "polya" id = "polya">
+			<canvas id = "pole1" class = "polee1" width = "7000" height = "7000" onclick = "tap(event)" onselectstart="return false" onmousedown="return false" ></canvas>
+			<canvas id = "pole" class = "polee" width = "7000" height = "7000" onclick = "tap(event)" onselectstart="return false" onmousedown="return false"></canvas>
+		</div>
 		<div class  = 'stats' id = 'sts'>
-			<p id = 'hp'><canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas> &nbps; </p>
-			<p id = 'fd'><canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas> &nbps; </p>
-			<p id = 'wat'><canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas> &nbps; </p>
-			<p id = 'lt'><canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas> &nbps; </p>
-			<p id = 'lv'> &nbps; </p>
-			<p id = 'kl'> &nbps; </p>
+			<canvas class = 'hp' id = 'hpbar' width = '1000' height = '500'></canvas><span class = "stat" id = 'hp'> &nbps; </span><p></p>
+			<canvas class = 'fd' id = 'fdbar' width = '1000' height = '500'></canvas><span class = "stat" id = 'fd'> &nbps; </span><p></p>
+			<canvas class = 'wt' id = 'wtbar' width = '1000' height = '500'></canvas><span class = "stat" id = 'wat'> &nbps; </span><p></p>
+			<canvas class = 'lt' id = 'ltbar' width = '800' height = '500'></canvas><span class = "stat" id = 'lt'> &nbps; </span>
+			<p class = "stat" id = 'lv'> &nbps; </p>
+			<p class = "stat" id = 'kl'> &nbps; </p>
 			<p id = 'bns' class = "bonus"> &nbps; </p>
 			<p id = 'inf' class = "inf"> &nbps; </p>
 			<p id = "coords" class = "cords">&nbsp; </p>
+			<p class = 'stat'> Зброя</p>
+			<canvas class = "weap" id = "weap" width = '500' height = '500' onclick = "tapweap(event)"></canvas>
 		</div>
 		<canvas id = "poleprov" class = "minimap" width = "3100" height = "3100"> </canvas>
-		</div>
+	</div>
 	<div class = "infodiv" id = "infodiv">
 		<p class = "help"> Хай. Гэта дапаможнік па гульні, які падкажа, якія кнопкі за што адказваюць. Не бойся сюды заглядаць.</p>
 		<p class = "help"> Пачнем з таго, што ў гульні ёсць 2 варыянты кіравання: <br> 1) Перасоўванне ў мясцовасці і інвентары - стрэлкі; Адкрыць інвентар - Ctrl; Выкарыстаць, падабраць, спусціцца - Enter.</p>
 		<p class = "help"> 2) Перасоўванне ў мясцовасці і інвентары - WASD; Адкрыць інвентар - I; Выкарыстаць, падабраць, спусціцца - E.</p>
+		<p class = "help"> 3) Акрамя таго, у інвентары можна мыбіраць левай кнопкай мышкі.</p>
 		<p class = "help"> У вас ёсць 4 паказчыкі: НР, Ежа, Вада і святло. Ежа і вада ўплываюць на НР. Калі адзін з гэтых 2 паказчыкаў апусціўся ніжэй за нуль, НР змяншаюцца, а калі абодва паказчыкі больш за 70 адсоткаў, кожныя 5 хадоў узнаўляецца 1 адзінка НР.</p>
 		<p class = "help"> Калі ваша НР упадзе менш за 0%, вы памрэце. Калі святло апусціцца ніжэй за 0%, у вас будзе 5 хадоў, каб запаліць новае (пакуль паказчык святла не запоўніцца цалкам чорным). Калі вы не запаліце святло, таксама памрэце.</p>
 		<p class = "help"> Сцяна: <img class = "primkart2" src = "../img/pol_steny/stena1.jpg"> Падлога: <img class = "primkart2" src = "../img/pol_steny/pol3.jpg"></p>
@@ -40,9 +63,27 @@
 		<img class = "primkart" src = "../img/pol_steny/kuvshin.png">
 		<p class = "help"> Дастаць ежу, воду, факелы і г.д. можна з кувшыну. Для гэтага трэба стаць на кувшын і націснуць кнопку ўзаемадзеяння. Прадмет, які выпаў і ляжыць на зямлі можна пакласці сабе ў інвентар, націснуўшы гэтую кнопку яшчэ раз.</p>
 		<p class = "help"> Для спуску ніжэй трэба знайсці дзірку чорнага колеру. Для пераходу стаць на яе і націснуць E/Enter.</p>
-		<p class = "help"> Для нанясення ўрону монстру трэба націстуць кнопку хадзьбы ў бок монстра</p>
-		<p class = "help"> Пад час ўдару паказчыкі вады і ежы падаюць хутчэй</p>
+		<p class = "help"> Для нанясення ўрону монстру трэба націстуць мышкай на яго. Рука наносіць 7 адзінак урону.</p>
+		<p class = "help"> Пад час ўдару паказчыкі вады і ежы падаюць хутчэй.</p>
 		<p class = "help"> УВАГА! ГУЛЬНЯ НА СТАДЫІ РАСПРАЦОЎКІ. ТЭКТСТУРЫ НЕ ЗАВЕРШАНЫЯ. МОГУЦЬ ПРЫСУТНІЧАЦЬ БАГІ. КАЛІ ВЫ ЗНАЙШЛІ БАГ, ЗВЯРНІЦЕСЯ ДА АДНОГА З АЎТАРАЎ ПА СПАСЫЛЦЫ.</p>
+	</div>
+	<div class = "settdiv" id = "settdiv">
+		<p class = "help3"> Хай. Гэта налады гульні.<br></p>
+		<div class = "flex1">
+			<div>
+				<p class = "help"> Квадранае вакно гульні <input type = "checkbox" checked = "true" id = "kvadrchs" onchange = "razmoknchg()"> </p>
+				<p class = "help" id = "kvadr"> Памер самой гульні: <input type = "range" min = "200" max = "1200" value = "600" id = "razmok" oninput = "razmok()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+				<p class = "help" id = "kvadr1"> Шырыня самой гульні: <input type = "range" min = "200" max = "2000" value = "600" id = "razmokx" oninput = "razmokx()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+				<p class = "help" id = "kvadr2"> Вышыня самой гульні: <input type = "range" min = "200" max = "1200" value = "600" id = "razmoky" oninput = "razmoky()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+				<p class = "help"> Больш нізкая якасць <input type = "checkbox" id = "qual" onchange = "chqual()"> </p>
+			</div>
+			<div>
+				<p class = "help"> Тэкст статаў <input type = "checkbox" checked = "true" id = "stattext" onchange = "stattextchg()"> </p>
+				<p class = "help" id = "stattextsize"> Памер тэксту статаў: <input type = "range" min = "10" max = "40" value = "15" id = "razmtext" oninput = "razmtext()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+				<p class = "help"> Вышыня ячэек статаў: <input type = "range" min = "10" max = "40" value = "20" id = "razmbary" oninput = "razmbary()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+				<p class = "help"> Шырыня ячэек статаў: <input type = "range" min = "100" max = "450" value = "200" id = "razmbarx" oninput = "razmbarx()" onmousedown = "h1()" onmouseup = "unh1()"> </p>
+			</div>
+		</div>
 	</div>
 	<p onclick = "author()" class = "author"> Аўтары </p>
 	<div class = "auth" id = "auth">

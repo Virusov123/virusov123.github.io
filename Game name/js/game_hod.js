@@ -1,9 +1,25 @@
 function next_hod()
 {
 	light--;
+	wat--;
+	fd--;
 	if (light <= -5)
 	{
 		window.location.href = 'death.html?&light&'+lvl+'&'+kills;
+	}
+	if (wat <= 0)
+	{
+		wat = 0;
+		hp-=8;
+		if (hp <= 0)
+			dth = 'water';
+	}
+	if (fd <= 0)
+	{
+		fd = 0;
+		hp-=5;
+		if (hp <= 0)
+			dth = 'food';
 	}
 	if (krest)
 		krest--;
@@ -18,28 +34,6 @@ function next_hod()
 	if (tryap > 0)
 	{
 		light--;
-	}
-	if (wat > 0)
-		wat--;
-	else
-	{
-		wat--;
-		hp-=8;
-		if (hp <= 0)
-		{
-			window.location.href = 'death.html?&water&'+lvl+'&'+kills;
-		}
-	}
-	if (fd > 0)
-		fd--;
-	else
-	{
-		fd--;
-		hp-=5;
-		if (hp <= 0)
-		{
-			window.location.href = 'death.html?&food&'+lvl+'&'+kills;
-		}
 	}
 	if (Math.round(fd/fdmax*100) > 70 && Math.round(wat/watmax*100) > 70 && hp < hpmax && perreg > 2)
 	{
@@ -57,5 +51,9 @@ function next_hod()
 		}
 	mobhod();
 	if (hp <= 0)
-		window.location.href = 'death.html?&errorhp&'+lvl+'&'+kills;
+		hp = 0;
+	if (hp == 0)
+	{
+		window.location.href = 'death.html?&'+dth+'&'+lvl+'&'+kills;
+	}
 }
